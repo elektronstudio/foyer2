@@ -1,16 +1,18 @@
 import { createApp, ref } from "./src/deps/vue.js";
 import Scene from "./src/components/Scene.js";
 import Geometry from "./src/components/Geometry.js";
+import VideoHsl from "./src/components/VideoHsl.js";
 
 const App = {
-  components: { Scene, Geometry },
+  components: { Scene, Geometry, VideoHsl },
   setup() {
     const a = ref(1);
     return { a };
   },
   template: `
   <scene>
-    <geometry geometry="PlaneGeometry" :rotation="{ x: a, y: a, z: a}" />
+    <video-hsl />
+    <!-- <geometry geometry="PlaneGeometry" :rotation="{ x: a, y: a, z: a}" /> -->
   </scene>
   <input style="position: fixed; top: 10px; left: 10px;" type="range" min="1" max="180" step="0.001" v-model="a" /> -->
 `,

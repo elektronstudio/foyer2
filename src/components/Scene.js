@@ -56,10 +56,12 @@ export default {
       renderer.render(scene, camera);
     });
 
-    // const animate = () => {
-    //   requestAnimationFrame(animate);
-    //   renderer.render(scene, camera);
-    // };
+    const animate = () => {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+    };
+
+    // animate();
 
     return { el };
   },
