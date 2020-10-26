@@ -13,31 +13,38 @@ import {
   Color,
   DirectionalLight,
   WebGLRenderer,
+  OrbitControls,
 } from "../deps/three.js";
 
 export default {
   setup() {
     const el = ref(null);
-    const width = 200;
-    const height = 200;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
 
     const scene = new Scene();
-    scene.background = new Color("red");
 
     const directionalLight = new DirectionalLight("white", 1);
     directionalLight.position.set(0, 0, 10);
     scene.add(directionalLight);
 
-    const camera = new PerspectiveCamera(100, width / height, 0.1, 1000);
-    camera.position.z = width / 2.5;
+    const camera = new PerspectiveCamera(75, width / height, 0.1);
 
-    const renderer = new WebGLRenderer();
+    camera.position.z = 5;
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(width, height);
     renderer.setPixelRatio(
       window.devicePixelRatio ? window.devicePixelRatio : 1
     );
 
+    const update = () => renderer.render(scene, camera);
+
     provide("sceneContext", { scene });
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.addEventListener("change", update);
 
     onMounted(() => {
       el.value.append(renderer.domElement);
@@ -47,6 +54,12 @@ export default {
     onBeforeUpdate(() => {
       renderer.render(scene, camera);
     });
+
+    // const animate = () => {
+    //   requestAnimationFrame(animate);
+    //   controls.update();
+    //   renderer.render(scene, camera);
+    // };
 
     return { el };
   },
