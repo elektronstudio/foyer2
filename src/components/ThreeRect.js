@@ -25,10 +25,10 @@ export default {
       default: { x: 1, y: 1, z: 1 },
     },
     width: {
-      default: 10,
+      default: 50,
     },
     height: {
-      default: 10,
+      default: 50,
     },
   },
   setup(props) {
@@ -40,11 +40,11 @@ export default {
 
     const fillMaterial = new MeshPhongMaterial({
       color: "green",
-      opacity: 1,
+      opacity: 0,
       side: DoubleSide,
     });
     const fillObject = new Mesh(geometry, fillMaterial);
-    group.add(fillObject);
+    // group.add(fillObject);
 
     const edges = new EdgesGeometry(geometry);
     const strokeMaterial = new LineBasicMaterial({
