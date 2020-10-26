@@ -6,15 +6,15 @@ import VideoHsl from "./src/components/VideoHsl.js";
 const App = {
   components: { Scene, Geometry, VideoHsl },
   setup() {
-    const a = ref(1);
+    const a = ref(0);
     return { a };
   },
   template: `
   <scene>
-    <video-hsl />
-    <!-- <geometry geometry="PlaneGeometry" :rotation="{ x: a, y: a, z: a}" /> -->
+    <!-- <video-hsl :width="3" /> -->
+    <geometry geometry="PlaneGeometry" :rotation="{ x: a, y: a, z: a}" />
   </scene>
-  <input style="position: fixed; top: 10px; left: 10px;" type="range" min="1" max="180" step="0.001" v-model="a" /> -->
+  <!-- <input style="position: fixed; top: 10px; left: 10px;" type="range" min="1" max="180" step="0.001" v-model="a" />-->
 `,
 };
 

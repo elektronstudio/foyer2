@@ -14,15 +14,17 @@ import {
   DirectionalLight,
   WebGLRenderer,
   Clock,
+  PCFSoftShadowMap,
   OrbitControls,
 } from "../deps/three.js";
 
 import {
   GlitchEffect,
+  GlitchMode,
   EffectComposer,
   EffectPass,
   RenderPass,
-} from "http://cdn.skypack.dev/postprocessing";
+} from "../deps/postprocessing.js";
 
 export default {
   setup() {
@@ -47,6 +49,18 @@ export default {
     renderer.setPixelRatio(
       window.devicePixelRatio ? window.devicePixelRatio : 1
     );
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = PCFSoftShadowMap;
+
+    /*
+    {
+      delay: [0, 1],
+      duration: [1, 2],
+      strength: [1, 2],
+      mode: GlitchMode.SPORADIC,
+      ratio: 0.85,
+    }
+    */
 
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
