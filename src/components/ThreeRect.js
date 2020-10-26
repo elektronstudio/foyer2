@@ -1,4 +1,4 @@
-import { inject, watchEffect } from "../deps/vue.js";
+import { inject } from "../deps/vue.js";
 
 import {
   Group,
@@ -11,10 +11,18 @@ import {
   DoubleSide,
 } from "../deps/three.js";
 
+import { useThreeTransform } from "../utils/index.js";
+
 export default {
   props: {
     position: {
       default: { x: 0, y: 0, z: 0 },
+    },
+    rotation: {
+      default: { x: 0, y: 0, z: 0 },
+    },
+    scale: {
+      default: { x: 1, y: 1, z: 1 },
     },
     width: {
       default: 10,
@@ -49,9 +57,7 @@ export default {
 
     sceneContext.scene.add(group);
 
-    group.position.x = props.position.x;
-    group.position.y = props.position.y;
-    group.position.z = props.position.z;
+    useThreeTransform(props, group);
 
     return () => null;
   },
