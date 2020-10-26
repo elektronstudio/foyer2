@@ -13,8 +13,16 @@ import {
   Color,
   DirectionalLight,
   WebGLRenderer,
+  Clock,
   OrbitControls,
 } from "../deps/three.js";
+
+import {
+  GlitchEffect,
+  EffectComposer,
+  EffectPass,
+  RenderPass,
+} from "http://cdn.skypack.dev/postprocessing";
 
 export default {
   setup() {
@@ -40,7 +48,13 @@ export default {
       window.devicePixelRatio ? window.devicePixelRatio : 1
     );
 
-    const update = () => renderer.render(scene, camera);
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    composer.addPass(new EffectPass(camera, new GlitchEffect()));
+
+    const clock = new Clock();
+
+    const update = () => composer.render(clock.getDelta());
 
     provide("sceneContext", { scene });
 
@@ -49,19 +63,19 @@ export default {
 
     onMounted(() => {
       el.value.append(renderer.domElement);
-      renderer.render(scene, camera);
+      update();
     });
 
     onBeforeUpdate(() => {
-      renderer.render(scene, camera);
+      update();
     });
 
     const animate = () => {
       requestAnimationFrame(animate);
-      renderer.render(scene, camera);
+      update();
     };
 
-    // animate();
+    //animate();
 
     return { el };
   },
