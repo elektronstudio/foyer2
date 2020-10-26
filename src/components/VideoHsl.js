@@ -10,7 +10,8 @@ import {
 } from "../deps/three.js";
 
 export default {
-  setup() {
+  props: { width: { default: 1 } },
+  setup(props) {
     const sceneContext = inject("sceneContext");
 
     const url =
@@ -43,7 +44,7 @@ export default {
       });
     }
 
-    const geometry = new PlaneGeometry(1, 1);
+    const geometry = new PlaneGeometry(props.width, (9 / 16) * props.width);
 
     const map = new VideoTexture(video);
 
