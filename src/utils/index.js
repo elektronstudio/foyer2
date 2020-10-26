@@ -18,9 +18,9 @@ export const useThreeTransform = (props, object) => {
   watch(
     () => props.rotation,
     (rotation) => {
-      object.rotation.x += deg2rad(rotation.x);
-      object.rotation.y += deg2rad(rotation.y);
-      object.rotation.z += deg2rad(rotation.z);
+      object.rotation.x = deg2rad(rotation.x);
+      object.rotation.y = deg2rad(rotation.y);
+      object.rotation.z = deg2rad(rotation.z);
     },
     { immediate: true }
   );

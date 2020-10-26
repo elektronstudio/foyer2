@@ -1,5 +1,6 @@
 import { inject } from "../deps/vue.js";
 
+import * as THREE from "../deps/three.js";
 import {
   Group,
   PlaneGeometry,
@@ -30,13 +31,16 @@ export default {
     height: {
       default: 1,
     },
+    geometry: {
+      default: "BoxGeometry",
+    },
   },
   setup(props) {
     const sceneContext = inject("sceneContext");
 
     let group = new Group();
 
-    const geometry = new PlaneGeometry(props.width, props.height);
+    const geometry = new THREE[props.geometry](props.width, props.height);
 
     const fillMaterial = new MeshPhongMaterial({
       color: "green",

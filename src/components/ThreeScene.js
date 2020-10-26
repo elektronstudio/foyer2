@@ -23,6 +23,7 @@ export default {
     const height = window.innerHeight;
 
     const scene = new Scene();
+    scene.background = new Color("black");
 
     const directionalLight = new DirectionalLight("white", 1);
     directionalLight.position.set(0, 0, 10);
