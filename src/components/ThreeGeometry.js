@@ -1,4 +1,4 @@
-import { inject } from "../deps/vue.js";
+import { inject, computed, watch } from "../deps/vue.js";
 
 import * as THREE from "../deps/three.js";
 import {
@@ -12,7 +12,7 @@ import {
   DoubleSide,
 } from "../deps/three.js";
 
-import { useThreeTransform } from "../utils/index.js";
+import { watchTransfrom, watchMaterial } from "../utils/index.js";
 
 export default {
   props: {
@@ -51,12 +51,17 @@ export default {
 
     const geometry = new THREE[props.geometry](props.width, props.height);
 
-    const fillMaterial = new MeshPhongMaterial({
-      color: props.color,
-      opacity: props.opacity,
-      side: DoubleSide,
-    });
-    const fillObject = new Mesh(geometry, fillMaterial);
+    const fillMaterial = computed(
+      () =>
+        new MeshPhongMaterial({
+          color: props.color,
+          opacity: props.opacity,
+          side: DoubleSide,
+        })
+    );
+
+    const fillObject = new Mesh(geometry, fillMaterial.value);
+
     group.add(fillObject);
 
     const edges = new EdgesGeometry(geometry);
@@ -70,7 +75,8 @@ export default {
 
     sceneContext.scene.add(group);
 
-    useThreeTransform(props, group);
+    watchTransfrom(props, group);
+    watchMaterial(props, group);
 
     return () => null;
   },
