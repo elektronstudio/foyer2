@@ -1,5 +1,6 @@
 import ThreeGeometry from "./ThreeGeometry.js";
 import ThreeGroup from "./ThreeGroup.js";
+import { TextureLoader, VideoTexture } from "../deps/three.js";
 
 const points = [
   [-8, -8],
@@ -22,11 +23,15 @@ export default {
   components: { ThreeGeometry, ThreeGroup },
   setup() {
     const panels = pointsTransforms(points);
-    return { panels, settings };
+    // const texture = new TextureLoader().load(
+    //   "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/crate.gif"
+    // );
+    return { panels, settings, texture };
   },
   template: `
     <three-group :position="[0,2.01,0]" :rotation="[180,0,0]">
       <three-geometry
+        :texture="texture"
         geometry="PlaneGeometry"
         v-for="panel in panels"
         :position="panel.position"

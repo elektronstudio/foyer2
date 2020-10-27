@@ -35,6 +35,9 @@ export default {
     geometry: {
       default: "BoxGeometry",
     },
+    texture: {
+      default: null,
+    },
   },
   setup(props) {
     const sceneContext = inject("sceneContext");
@@ -50,6 +53,7 @@ export default {
     const fillMaterial = computed(
       () =>
         new MeshPhongMaterial({
+          map: props.texture,
           color: props.color,
           opacity: props.opacity,
           side: DoubleSide,
