@@ -26,12 +26,11 @@ export default {
     // const texture = new TextureLoader().load(
     //   "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/crate.gif"
     // );
-    return { panels, settings, texture };
+    return { panels, settings };
   },
   template: `
     <three-group :position="[0,2.01,0]" :rotation="[180,0,0]">
       <three-geometry
-        :texture="texture"
         geometry="PlaneGeometry"
         v-for="panel in panels"
         :position="panel.position"
