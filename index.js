@@ -17,7 +17,7 @@ const App = {
     <three-video-hsl :width="3" />
     <!-- <three-text /> -->
     <three-geometry
-      :rotation="{ x: -90, y: 0, z: 0 }"
+      :rotation="[-90,0,0]"
       geometry="PlaneGeometry"
       width="50"
       height="50"

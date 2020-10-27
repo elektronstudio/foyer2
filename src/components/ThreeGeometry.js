@@ -13,23 +13,16 @@ import {
 } from "../deps/three.js";
 
 import {
+  transformProps,
   materialProps,
-  watchTransfrom,
+  watchTransform,
   watchMaterial,
 } from "../utils/index.js";
 
 export default {
   props: {
+    ...transformProps,
     ...materialProps,
-    position: {
-      default: { x: 0, y: 0, z: 0 },
-    },
-    rotation: {
-      default: { x: 0, y: 0, z: 0 },
-    },
-    scale: {
-      default: { x: 1, y: 1, z: 1 },
-    },
     width: {
       default: 1,
     },
@@ -71,7 +64,7 @@ export default {
 
     sceneContext.scene.add(group);
 
-    watchTransfrom(props, group);
+    watchTransform(props, group);
     watchMaterial(props, group);
 
     return () => null;

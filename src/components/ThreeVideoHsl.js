@@ -1,6 +1,6 @@
 import { inject, watch } from "../deps/vue.js";
 import { Hls } from "../deps/hls.js";
-import { watchTransfrom } from "../utils/index.js";
+import { watchTransform } from "../utils/index.js";
 
 import {
   PlaneGeometry,
@@ -59,7 +59,7 @@ export default {
 
     sceneContext.scene.add(object);
 
-    // watchTransfrom(props, object);
+    // watchTransform(props, object);
 
     return () => null;
   },

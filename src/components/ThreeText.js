@@ -1,6 +1,6 @@
 import { inject, watch, onUnmounted } from "../deps/vue.js";
 import { Text } from "https://cdn.skypack.dev/troika-three-text";
-import { transformProps, watchTransfrom } from "../utils/index.js";
+import { transformProps, watchTransform } from "../utils/index.js";
 
 export default {
   props: {
@@ -22,12 +22,11 @@ export default {
         object.color = props.color;
         object.fontSize = props.fontSize;
         object.sync();
-        sceneContext.update();
       },
       { immediate: true }
     );
 
-    watchTransfrom(props, object);
+    watchTransform(props, object);
 
     onUnmounted(() => {
       sceneContext.scene.remove(object);

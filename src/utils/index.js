@@ -6,23 +6,24 @@ export const rad2deg = (rad) => (rad * 180) / Math.PI;
 
 export const transformProps = {
   position: {
-    default: { x: 0, y: 0, z: 0 },
+    default: [0, 0, 0],
   },
   rotation: {
-    default: { x: 0, y: 0, z: 0 },
+    default: [0, 0, 0],
   },
   scale: {
-    default: { x: 1, y: 1, z: 1 },
+    default: [1, 1, 1],
   },
 };
 
-export const watchTransfrom = (props, object) => {
+export const watchTransform = (props, object) => {
+  console.log(props);
   watch(
     () => props.position,
     (position) => {
-      object.position.x += position.x;
-      object.position.y += position.y;
-      object.position.z += position.z;
+      object.position.x += position[0];
+      object.position.y += position[1];
+      object.position.z += position[2];
     },
     { immediate: true }
   );
@@ -30,9 +31,9 @@ export const watchTransfrom = (props, object) => {
   watch(
     () => props.rotation,
     (rotation) => {
-      object.rotation.x = deg2rad(rotation.x);
-      object.rotation.y = deg2rad(rotation.y);
-      object.rotation.z = deg2rad(rotation.z);
+      object.rotation.x = deg2rad(rotation[0]);
+      object.rotation.y = deg2rad(rotation[1]);
+      object.rotation.z = deg2rad(rotation[2]);
     },
     { immediate: true }
   );
@@ -40,9 +41,9 @@ export const watchTransfrom = (props, object) => {
   watch(
     () => props.scale,
     (scale) => {
-      object.scale.x *= scale.x;
-      object.scale.y *= scale.y;
-      object.scale.z *= scale.z;
+      object.scale.x *= scale[0];
+      object.scale.y *= scale[1];
+      object.scale.z *= scale[2];
     },
     { immediate: true }
   );
