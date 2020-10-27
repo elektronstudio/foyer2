@@ -11,11 +11,12 @@ import {
   Camera,
   PerspectiveCamera,
   Color,
-  DirectionalLight,
   WebGLRenderer,
   Clock,
   PCFSoftShadowMap,
   OrbitControls,
+  AmbientLight,
+  PointLight,
 } from "../deps/three.js";
 
 // import {
@@ -35,9 +36,16 @@ export default {
     const scene = new Scene();
     scene.background = new Color("black");
 
-    const directionalLight = new DirectionalLight("white", 1);
-    directionalLight.position.set(0, 0, 10);
-    scene.add(directionalLight);
+    const ambientLight = new AmbientLight();
+    scene.add(ambientLight);
+
+    const directionalLightOne = new PointLight("white");
+    directionalLightOne.position.set(-40, 40, 40);
+    scene.add(directionalLightOne);
+
+    const directionalLightTwo = new PointLight("white");
+    directionalLightTwo.position.set(40, 40, 40);
+    scene.add(directionalLightTwo);
 
     const camera = new PerspectiveCamera(75, width / height, 0.1);
 
@@ -81,7 +89,7 @@ export default {
       update();
     };
 
-    animate();
+    //animate();
 
     return { el };
   },

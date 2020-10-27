@@ -34,8 +34,8 @@ export default {
     geometry: {
       default: "BoxGeometry",
     },
-    fill: {
-      default: "white",
+    color: {
+      default: "gray",
     },
     stroke: {
       default: "white",
