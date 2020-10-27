@@ -49,9 +49,9 @@ export default {
 
     const camera = new PerspectiveCamera(75, width / height, 0.1);
 
-    camera.position.y = 0.1;
-    camera.position.z = 5;
-    camera.lookAt(0, 0, 0);
+    camera.position.y = 1;
+    camera.position.z = 10;
+    camera.lookAt(0, 1, 0);
 
     const renderer = new WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(width, height);
