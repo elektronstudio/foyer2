@@ -1,6 +1,6 @@
 import { ref } from "../deps/vue.js";
 
-const settings = [
+export const initialSettings = [
   {
     key: "backgroundColor",
     title: "Background color",
@@ -111,6 +111,6 @@ const settings = [
   },
 ];
 
-export const state = Object.fromEntries(
-  settings.map(({ key, value }) => [key, ref(value)])
+export const settings = Object.fromEntries(
+  initialSettings.map(({ key, value }) => [key, ref(value)])
 );

@@ -4,13 +4,11 @@ import ThreeGeometry from "./src/components/ThreeGeometry.js";
 import ThreeVideoHsl from "./src/components/ThreeVideoHsl.js";
 import ThreeText from "./src/components/ThreeText.js";
 
-import { state } from "./src/settings/index.js";
-state.panelOffset.value = -10;
-console.log(state.panelOffset.value);
+import { initialSettings, settings } from "./src/settings/index.js";
 
 const Test = {
   setup() {
-    return { ...state };
+    return { ...settings };
   },
   template: `
   <div style="position: fixed; top: 10px; right: 10px; color: white;">
@@ -19,10 +17,11 @@ const Test = {
   </div>
   `,
 };
+
 const App = {
   components: { Test, ThreeScene, ThreeGeometry, ThreeVideoHsl, ThreeText },
   setup() {
-    return { ...state };
+    return { ...settings };
   },
   template: `
   <three-scene>
