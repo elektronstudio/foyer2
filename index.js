@@ -6,7 +6,7 @@ import ThreeText from "./src/components/ThreeText.js";
 
 import { initialSettings, settings } from "./src/settings/index.js";
 
-const Test = {
+const Settings = {
   setup() {
     return { initialSettings, settings };
   },
@@ -22,23 +22,32 @@ const Test = {
       color: white;
       padding: 32px;
       background: rgba(30,30,30,0.85);
+      display: grid;
+      gap: 8px;
     "
   >
-    <div v-for="(value, key, i) in settings">
-      <div>{{ initialSettings[i].title }}: {{ settings[key] }}
-      <div>
-        <input
-          v-model="settings[key]" 
-          :type="initialSettings[i].type"
-        />
-      </div>
-    </div>
+    <template v-for="(value, key, i) in settings">
+      <div>{{ initialSettings[i].title }}: {{ settings[key] }}</div>
+      <textarea
+        v-if="initialSettings[i].textarea"
+        v-model="settings[key]" 
+        :rows="initialSettings[i].rows || 2"
+      />
+      <input
+        v-if="!initialSettings[i].textarea"
+        v-model="settings[key]" 
+        :type="initialSettings[i].type"
+        :min="initialSettings[i].min || 0"
+        :max="initialSettings[i].max || 100"
+        :step="initialSettings[i].step || 1"
+      />
+    </template>
   </div>
   `,
 };
 
 const App = {
-  components: { Test, ThreeScene, ThreeGeometry, ThreeVideoHsl, ThreeText },
+  components: { Settings, ThreeScene, ThreeGeometry, ThreeVideoHsl, ThreeText },
   setup() {
     return { settings };
   },
@@ -48,7 +57,7 @@ const App = {
     <!-- <three-text /> -->
     <!-- <three-geometry color="red" geometry="BoxGeometry" /> -->
   </three-scene>
-  <test />
+  <settings />
 `,
 };
 
