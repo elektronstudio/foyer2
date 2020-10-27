@@ -48,6 +48,21 @@ export const watchTransfrom = (props, object) => {
   );
 };
 
+export const materialProps = {
+  color: {
+    default: "black",
+  },
+  lineColor: {
+    default: "white",
+  },
+  opacity: {
+    default: 1,
+  },
+  lineOpacity: {
+    default: 1,
+  },
+};
+
 export const watchMaterial = (props, object) => {
   watch(
     () => props.color,
@@ -64,13 +79,13 @@ export const watchMaterial = (props, object) => {
   watch(
     () => props.lineColor,
     (lineColor) => {
-      object.children[0].material.color.set(lineColor);
+      object.children[1].material.color.set(lineColor);
     }
   );
   watch(
     () => props.lineOpacity,
     (lineOpacity) => {
-      object.children[0].material.opacity.set(opacity);
+      object.children[1].material.opacity.set(opacity);
     }
   );
 };

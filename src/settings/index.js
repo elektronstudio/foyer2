@@ -13,18 +13,19 @@ export const initialSettings = [
     type: "color",
     value: "#111111",
   },
-  // {
+  {
+    key: "lineColor",
+    title: "Line color",
+    type: "color",
+    value: "#cccccc",
+  },
+  //  {
   //   key: "lightColor",
   //   title: "Light color",
   //   type: "color",
   //   value: "#ffffff",
   // },
-  // {
-  //   key: "lineColor",
-  //   title: "Line color",
-  //   type: "color",
-  //   value: "#cccccc",
-  // },
+
   // {
   //   key: "panelOffset",
   //   title: "Panel offset",

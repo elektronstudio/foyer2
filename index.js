@@ -22,6 +22,7 @@ const App = {
       width="50"
       height="50"
       :color="settings.panelColor"
+      :lineColor="settings.lineColor"
     />
   </three-scene>
   <settings />

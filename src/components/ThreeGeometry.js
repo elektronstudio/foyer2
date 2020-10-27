@@ -12,10 +12,15 @@ import {
   DoubleSide,
 } from "../deps/three.js";
 
-import { watchTransfrom, watchMaterial } from "../utils/index.js";
+import {
+  materialProps,
+  watchTransfrom,
+  watchMaterial,
+} from "../utils/index.js";
 
 export default {
   props: {
+    ...materialProps,
     position: {
       default: { x: 0, y: 0, z: 0 },
     },
@@ -33,15 +38,6 @@ export default {
     },
     geometry: {
       default: "BoxGeometry",
-    },
-    color: {
-      default: "gray",
-    },
-    stroke: {
-      default: "white",
-    },
-    opacity: {
-      default: 1,
     },
   },
   setup(props) {
@@ -66,8 +62,8 @@ export default {
 
     const edges = new EdgesGeometry(geometry);
     const strokeMaterial = new LineBasicMaterial({
-      color: props.stroke,
-      opacity: props.opacity,
+      color: props.lineColor,
+      opacity: props.lineOpacity,
       side: DoubleSide,
     });
     const strokeObject = new LineSegments(edges, strokeMaterial);
