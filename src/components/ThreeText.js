@@ -34,6 +34,10 @@ export default {
       { immediate: true }
     );
 
+    object.addEventListener("synccomplete", () => {
+      sceneContext.update();
+    });
+
     watchTransform(props, object);
 
     onUnmounted(() => {

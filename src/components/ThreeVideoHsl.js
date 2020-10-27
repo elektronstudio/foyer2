@@ -24,7 +24,7 @@ export default {
     video.playsinline = true;
     video.crossOrigin = "anonymous";
     video.muted = true;
-    //video.style = "display: none";
+    video.style = "display: none";
 
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = url;
@@ -47,10 +47,10 @@ export default {
 
     const geometry = new PlaneGeometry(props.width, (9 / 16) * props.width);
 
-    const map = new VideoTexture(video);
+    const texture = new VideoTexture(video);
 
     const material = new MeshBasicMaterial({
-      map,
+      map: texture,
       color: "white",
       side: DoubleSide,
     });
@@ -59,7 +59,7 @@ export default {
 
     sceneContext.scene.add(object);
 
-    // watchTransform(props, object);
+    watchTransform(props, object);
 
     return () => null;
   },
