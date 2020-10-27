@@ -58,6 +58,8 @@ export default {
 
     sceneContext.scene.add(object);
 
+    useThreeTransform(props, object);
+
     return () => null;
   },
 };

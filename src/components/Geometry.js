@@ -34,6 +34,15 @@ export default {
     geometry: {
       default: "BoxGeometry",
     },
+    fill: {
+      default: "white",
+    },
+    stroke: {
+      default: "white",
+    },
+    opacity: {
+      default: 1,
+    },
   },
   setup(props) {
     const sceneContext = inject("sceneContext");
@@ -43,8 +52,8 @@ export default {
     const geometry = new THREE[props.geometry](props.width, props.height);
 
     const fillMaterial = new MeshPhongMaterial({
-      color: "green",
-      opacity: 0,
+      color: props.color,
+      opacity: props.opacity,
       side: DoubleSide,
     });
     const fillObject = new Mesh(geometry, fillMaterial);
@@ -52,8 +61,8 @@ export default {
 
     const edges = new EdgesGeometry(geometry);
     const strokeMaterial = new LineBasicMaterial({
-      color: "blue",
-      opacity: 1,
+      color: props.stroke,
+      opacity: props.opacity,
       side: DoubleSide,
     });
     const strokeObject = new LineSegments(edges, strokeMaterial);

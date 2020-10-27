@@ -18,13 +18,13 @@ import {
   OrbitControls,
 } from "../deps/three.js";
 
-import {
-  GlitchEffect,
-  GlitchMode,
-  EffectComposer,
-  EffectPass,
-  RenderPass,
-} from "../deps/postprocessing.js";
+// import {
+//   GlitchEffect,
+//   GlitchMode,
+//   EffectComposer,
+//   EffectPass,
+//   RenderPass,
+// } from "../deps/postprocessing.js";
 
 export default {
   setup() {
@@ -52,23 +52,15 @@ export default {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFSoftShadowMap;
 
-    /*
-    {
-      delay: [0, 1],
-      duration: [1, 2],
-      strength: [1, 2],
-      mode: GlitchMode.SPORADIC,
-      ratio: 0.85,
-    }
-    */
+    // const composer = new EffectComposer(renderer);
+    // composer.addPass(new RenderPass(scene, camera));
+    // composer.addPass(new EffectPass(camera, new GlitchEffect()));
 
-    const composer = new EffectComposer(renderer);
-    composer.addPass(new RenderPass(scene, camera));
-    composer.addPass(new EffectPass(camera, new GlitchEffect()));
+    // const clock = new Clock();
 
-    const clock = new Clock();
+    //    const update = () => composer.render(clock.getDelta());
 
-    const update = () => composer.render(clock.getDelta());
+    const update = () => renderer.render(scene, camera);
 
     provide("sceneContext", { scene });
 
