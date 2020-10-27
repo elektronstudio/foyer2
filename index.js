@@ -23,7 +23,14 @@ const App = {
   template: `
   <three-scene>
     <!-- <three-video-hsl :width="3" /> -->
-    <!-- <three-text /> -->
+    <three-text
+      :position="[-1, 1.5, -1]"
+      text="Live"
+      anchorX="center"
+      anchorY="middle"
+      fontSize="1.25"
+      letterSpacing="-0.01"
+    />
     <three-panels />
     <three-geometry
       :rotation="[-90,0,0]"

@@ -8,6 +8,10 @@ export default {
     color: { default: "white" },
     text: { default: "Hello" },
     fontSize: { default: 1 },
+    anchorX: { default: "left" },
+    anchorY: { default: "top" },
+    letterSpacing: { default: 0 },
+    font: { default: "../../public/font-bold.woff" },
   },
   setup(props) {
     const sceneContext = inject("sceneContext");
@@ -18,9 +22,13 @@ export default {
     watch(
       () => props,
       (props) => {
+        object.font = props.font;
         object.text = props.text;
         object.color = props.color;
         object.fontSize = props.fontSize;
+        object.anchorX = props.anchorX;
+        object.anchorY = props.anchorY;
+        object.letterSpacing = props.letterSpacing;
         object.sync();
       },
       { immediate: true }
