@@ -1,5 +1,5 @@
 import { inject, watch, onUnmounted } from "../deps/vue.js";
-import { Text as ThreeText } from "https://cdn.skypack.dev/troika-three-text";
+import { Text } from "https://cdn.skypack.dev/troika-three-text";
 import { transformProps, useThreeTransform } from "../utils/index.js";
 
 export default {
@@ -12,7 +12,7 @@ export default {
   setup(props) {
     const sceneContext = inject("sceneContext");
 
-    const object = new ThreeText();
+    const object = new Text();
     sceneContext.scene.add(object);
 
     watch(

@@ -1,21 +1,21 @@
 import { createApp, ref } from "./src/deps/vue.js";
-import Scene from "./src/components/Scene.js";
-import Geometry from "./src/components/Geometry.js";
-import VideoHsl from "./src/components/VideoHsl.js";
-import Aaa from "./src/components/Aaa.js";
+import ThreeScene from "./src/components/ThreeScene.js";
+import ThreeGeometry from "./src/components/ThreeGeometry.js";
+import ThreeVideoHsl from "./src/components/ThreeVideoHsl.js";
+import ThreeText from "./src/components/ThreeText.js";
 
 const App = {
-  components: { Scene, Geometry, VideoHsl, Aaa },
+  components: { ThreeScene, ThreeGeometry, ThreeVideoHsl, ThreeText },
   setup() {
     const a = ref(0);
     return { a };
   },
   template: `
-  <scene>
+  <three-scene>
     <!-- <video-hsl :width="3" /> -->
-    <aaa />
+    <three-text />
     <!-- <geometry geometry="PlaneGeometry" :rotation="{ x: a, y: a, z: a}" /> -->
-  </scene>
+  </three-scene>
   <!-- <input style="position: fixed; top: 10px; left: 10px;" type="range" min="1" max="180" step="0.001" v-model="a" />-->
 `,
 };
