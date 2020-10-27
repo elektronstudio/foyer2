@@ -5,21 +5,32 @@ import ThreeVideoHsl from "./src/components/ThreeVideoHsl.js";
 import ThreeText from "./src/components/ThreeText.js";
 
 import { state } from "./src/settings/index.js";
-console.log(state.fontSize.value);
+state.panelOffset.value = -10;
+console.log(state.panelOffset.value);
 
-const App = {
-  components: { ThreeScene, ThreeGeometry, ThreeVideoHsl, ThreeText },
+const Test = {
   setup() {
-    const a = ref(0);
-    return { a };
+    return { ...state };
+  },
+  template: `
+  <div style="position: fixed; top: 10px; right: 10px; color: white;">
+  <input v-model="backgroundColor" type="color" />
+  backgroundColor: {{ backgroundColor }}
+  </div>
+  `,
+};
+const App = {
+  components: { Test, ThreeScene, ThreeGeometry, ThreeVideoHsl, ThreeText },
+  setup() {
+    return { ...state };
   },
   template: `
   <three-scene>
     <three-video-hsl :width="3" />
     <!-- <three-text /> -->
-    <!-- <three-geometry color="red" geometry="BoxGeometry" :rotation="{ x: a, y: a, z: a}" /> -->
+    <!-- <three-geometry color="red" geometry="BoxGeometry" /> -->
   </three-scene>
-  <input style="position: fixed; top: 10px; left: 10px;" type="range" min="1" max="180" step="0.001" v-model="a" />
+  <test />
 `,
 };
 

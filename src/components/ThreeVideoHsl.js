@@ -1,4 +1,4 @@
-import { inject } from "../deps/vue.js";
+import { inject, watch } from "../deps/vue.js";
 import { Hls } from "../deps/hls.js";
 import { useThreeTransform } from "../utils/index.js";
 
@@ -10,10 +10,17 @@ import {
   DoubleSide,
 } from "../deps/three.js";
 
+import { state } from "../settings/index.js";
+
 export default {
   props: { width: { default: 1 } },
   setup(props) {
     const sceneContext = inject("sceneContext");
+    watch(
+      () => state,
+      () => console.log(state),
+      { immediate: true }
+    );
 
     const url =
       "https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8";
