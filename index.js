@@ -3,19 +3,28 @@ import ThreeScene from "./src/components/ThreeScene.js";
 import ThreeGeometry from "./src/components/ThreeGeometry.js";
 import ThreeVideoHsl from "./src/components/ThreeVideoHsl.js";
 import ThreeText from "./src/components/ThreeText.js";
+import ThreePanels from "./src/components/ThreePanels.js";
 import Settings from "./src/components/Settings.js";
 
 import { settings } from "./src/settings/index.js";
 
 const App = {
-  components: { Settings, ThreeScene, ThreeGeometry, ThreeVideoHsl, ThreeText },
+  components: {
+    ThreePanels,
+    Settings,
+    ThreeScene,
+    ThreeGeometry,
+    ThreeVideoHsl,
+    ThreeText,
+  },
   setup() {
     return { settings };
   },
   template: `
   <three-scene>
-    <three-video-hsl :width="3" />
+    <!-- <three-video-hsl :width="3" /> -->
     <!-- <three-text /> -->
+    <three-panels />
     <three-geometry
       :rotation="[-90,0,0]"
       geometry="PlaneGeometry"

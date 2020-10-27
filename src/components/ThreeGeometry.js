@@ -29,6 +29,9 @@ export default {
     height: {
       default: 1,
     },
+    depth: {
+      default: 1,
+    },
     geometry: {
       default: "BoxGeometry",
     },
@@ -38,7 +41,11 @@ export default {
 
     let group = new Group();
 
-    const geometry = new THREE[props.geometry](props.width, props.height);
+    const geometry = new THREE[props.geometry](
+      props.width,
+      props.height,
+      props.depth
+    );
 
     const fillMaterial = computed(
       () =>

@@ -17,7 +17,6 @@ export const transformProps = {
 };
 
 export const watchTransform = (props, object) => {
-  console.log(props);
   watch(
     () => props.position,
     (position) => {
