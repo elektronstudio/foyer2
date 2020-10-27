@@ -26,7 +26,7 @@ const App = {
     />
   </three-scene>
   <settings />
-  <div style="position: fixed; top: 0; left: 0; color: white">{{ settings.panelColor }}</div>
+  <!-- <div style="position: fixed; top: 0; left: 0; color: white">{{ settings.panelColor }}</div> -->
 `,
 };
 
