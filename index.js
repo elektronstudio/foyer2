@@ -8,12 +8,31 @@ import { initialSettings, settings } from "./src/settings/index.js";
 
 const Test = {
   setup() {
-    return { ...settings };
+    return { initialSettings, settings };
   },
   template: `
-  <div style="position: fixed; top: 10px; right: 10px; color: white;">
-  <input v-model="backgroundColor" type="color" />
-  backgroundColor: {{ backgroundColor }}
+  <div
+    style="
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 250px;
+      overflow: auto;
+      color: white;
+      padding: 32px;
+      background: rgba(30,30,30,0.85);
+    "
+  >
+    <div v-for="(value, key, i) in settings">
+      <div>{{ initialSettings[i].title }}: {{ settings[key] }}
+      <div>
+        <input
+          v-model="settings[key]" 
+          :type="initialSettings[i].type"
+        />
+      </div>
+    </div>
   </div>
   `,
 };
@@ -21,7 +40,7 @@ const Test = {
 const App = {
   components: { Test, ThreeScene, ThreeGeometry, ThreeVideoHsl, ThreeText },
   setup() {
-    return { ...settings };
+    return { settings };
   },
   template: `
   <three-scene>

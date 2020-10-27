@@ -1,4 +1,4 @@
-import { ref } from "../deps/vue.js";
+import { reactive } from "../deps/vue.js";
 
 export const initialSettings = [
   {
@@ -111,6 +111,6 @@ export const initialSettings = [
   },
 ];
 
-export const settings = Object.fromEntries(
-  initialSettings.map(({ key, value }) => [key, ref(value)])
+export const settings = reactive(
+  Object.fromEntries(initialSettings.map(({ key, value }) => [key, value]))
 );
