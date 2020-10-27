@@ -4,6 +4,18 @@ export const deg2rad = (deg) => (deg * Math.PI) / 180;
 
 export const rad2deg = (rad) => (rad * 180) / Math.PI;
 
+export const transformProps = {
+  position: {
+    default: { x: 0, y: 0, z: 0 },
+  },
+  rotation: {
+    default: { x: 0, y: 0, z: 0 },
+  },
+  scale: {
+    default: { x: 1, y: 1, z: 1 },
+  },
+};
+
 export const useThreeTransform = (props, object) => {
   watch(
     () => props.position,

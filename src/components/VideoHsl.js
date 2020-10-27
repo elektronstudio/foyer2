@@ -1,5 +1,6 @@
 import { inject } from "../deps/vue.js";
 import { Hls } from "../deps/hls.js";
+import { useThreeTransform } from "../utils/index.js";
 
 import {
   PlaneGeometry,
@@ -58,7 +59,7 @@ export default {
 
     sceneContext.scene.add(object);
 
-    useThreeTransform(props, object);
+    // useThreeTransform(props, object);
 
     return () => null;
   },

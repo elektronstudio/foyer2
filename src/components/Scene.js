@@ -62,7 +62,7 @@ export default {
 
     const update = () => renderer.render(scene, camera);
 
-    provide("sceneContext", { scene });
+    provide("sceneContext", { scene, update });
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.addEventListener("change", update);
@@ -81,7 +81,7 @@ export default {
       update();
     };
 
-    //animate();
+    animate();
 
     return { el };
   },
