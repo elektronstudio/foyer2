@@ -17,15 +17,11 @@ import {
   OrbitControls,
   AmbientLight,
   PointLight,
+  EffectComposer,
+  RenderPass,
+  UnrealBloomPass,
+  Vector2,
 } from "../deps/three.js";
-
-// import {
-//   GlitchEffect,
-//   GlitchMode,
-//   EffectComposer,
-//   EffectPass,
-//   RenderPass,
-// } from "../deps/postprocessing.js";
 
 export default {
   setup() {
@@ -53,7 +49,7 @@ export default {
     camera.position.z = 10;
     camera.lookAt(0, 1, 0);
 
-    const renderer = new WebGLRenderer({ alpha: true, antialias: true });
+    const renderer = new WebGLRenderer({ antialias: false });
     renderer.setSize(width, height);
     renderer.setPixelRatio(
       window.devicePixelRatio ? window.devicePixelRatio : 1
@@ -61,15 +57,21 @@ export default {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = PCFSoftShadowMap;
 
-    // const composer = new EffectComposer(renderer);
-    // composer.addPass(new RenderPass(scene, camera));
-    // composer.addPass(new EffectPass(camera, new GlitchEffect()));
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
 
-    // const clock = new Clock();
+    // https://threejs.org/examples/?q=bloom#webgl_postprocessing_unreal_bloom
+    /// resolution, strength, radius, threshold;
+    composer.addPass(
+      new UnrealBloomPass(
+        new Vector2(window.innerWidth / 10, window.innerHeight / 10),
+        1,
+        2,
+        0.5
+      )
+    );
 
-    //    const update = () => composer.render(clock.getDelta());
-
-    const update = () => renderer.render(scene, camera);
+    const update = () => composer.render();
 
     provide("sceneContext", { scene, update });
 

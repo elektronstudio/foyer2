@@ -25,16 +25,15 @@ export const initialSettings = [
   //   type: "color",
   //   value: "#ffffff",
   // },
-
-  // {
-  //   key: "panelOffset",
-  //   title: "Panel offset",
-  //   type: "range",
-  //   value: 0,
-  //   min: -10,
-  //   max: 0,
-  //   step: 0.1,
-  // },
+  {
+    key: "panelOffset",
+    title: "Panel offset",
+    type: "range",
+    value: 0,
+    min: -10,
+    max: 0,
+    step: 0.1,
+  },
   // {
   //   key: "videoOffset",
   //   title: "Video offset",
