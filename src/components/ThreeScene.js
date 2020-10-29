@@ -49,7 +49,10 @@ export default {
     camera.position.z = 10;
     camera.lookAt(0, 1, 0);
 
-    const renderer = new WebGLRenderer({ antialias: false });
+    const renderer = new WebGLRenderer({
+      antialias: true,
+      powerPreference: "low-power",
+    });
     renderer.setSize(width, height);
     renderer.setPixelRatio(
       window.devicePixelRatio ? window.devicePixelRatio : 1

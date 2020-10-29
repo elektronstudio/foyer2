@@ -4,6 +4,7 @@ import ThreeGeometry from "./src/components/ThreeGeometry.js";
 import ThreeVideoHsl from "./src/components/ThreeVideoHsl.js";
 import ThreeText from "./src/components/ThreeText.js";
 import ThreePanels from "./src/components/ThreePanels.js";
+import ThreeLine from "./src/components/ThreeLine.js";
 import Settings from "./src/components/Settings.js";
 
 import { settings } from "./src/settings/index.js";
@@ -16,6 +17,7 @@ const App = {
     ThreeGeometry,
     ThreeVideoHsl,
     ThreeText,
+    ThreeLine,
   },
   setup() {
     return { settings };
@@ -23,6 +25,7 @@ const App = {
   template: `
   <three-scene>
     <!-- <three-video-hsl :width="3" /> -->
+    <three-line :points="[[0,0,0],[-10,10,10]]" />
     <three-text
       :position="[-1, 1.5, -1]"
       text="Live"
