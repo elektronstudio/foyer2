@@ -65,14 +65,15 @@ export default {
 
     // https://threejs.org/examples/?q=bloom#webgl_postprocessing_unreal_bloom
     /// resolution, strength, radius, threshold;
-    composer.addPass(
-      new UnrealBloomPass(
-        new Vector2(window.innerWidth / 10, window.innerHeight / 10),
-        1,
-        2,
-        0.5
-      )
-    );
+
+    // composer.addPass(
+    //   new UnrealBloomPass(
+    //     new Vector2(window.innerWidth, window.innerHeight),
+    //     1,
+    //     2,
+    //     0.5
+    //   )
+    // );
 
     const update = () => composer.render();
 
