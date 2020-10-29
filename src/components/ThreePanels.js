@@ -52,17 +52,7 @@ export default {
         :position="panel.position"
         :rotation="panel.rotation"
       >
-        <three-geometry
-          geometry="PlaneGeometry"
-          :width="panel.width"
-          depth="0.05"
-          :color="settings.panelColor"
-          :lineColor="settings.lineColor"
-        />
-        <three-line
-          :points="rectPoints(panel.width, 1)"
-          lineWidth="0.03" 
-        />
+        <slot :panel="panel" />
       </three-group>
     </three-group>
   </three-group> 

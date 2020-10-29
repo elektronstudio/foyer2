@@ -9,6 +9,7 @@ import ThreeLine from "./src/components/ThreeLine.js";
 import Settings from "./src/components/Settings.js";
 
 import { settings } from "./src/settings/index.js";
+import { rectPoints } from "./src/utils/index.js";
 
 const App = {
   components: {
@@ -22,7 +23,7 @@ const App = {
     ThreeLine,
   },
   setup() {
-    return { settings };
+    return { settings, rectPoints };
   },
   template: `
   <three-scene>
@@ -35,7 +36,19 @@ const App = {
       :lineColor="settings.lineColor"
     />
     <three-group :position="[0,settings.panelOffset,0]">
-      <three-panels />
+      <three-panels v-slot="{ panel }">
+        <three-geometry
+          geometry="PlaneGeometry"
+          :width="panel.width"
+          depth="0.05"
+          :color="settings.panelColor"
+          :lineColor="settings.lineColor"
+        />
+        <three-line
+          :points="rectPoints(panel.width, 1)"
+          lineWidth="0.03" 
+        />  
+      </three-panels>
       <three-text
         :position="[-1, 1.5, -1]"
         text="Live"
