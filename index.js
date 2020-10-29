@@ -28,6 +28,12 @@ const App = {
   template: `
   <three-scene>
     <three-geometry
+      geometry="SphereGeometry"
+      width="1000"
+      height="8"
+      :color="settings.backgroundColor"
+    />
+    <three-geometry
       :rotation="[-90,0,0]"
       geometry="PlaneGeometry"
       width="50"
