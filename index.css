@@ -1,6 +1,10 @@
+* {
+  transition: all 200ms linear;
+}
 body {
   margin: 0;
   font-family: sans-serif;
+  background: black;
 }
 canvas {
   display: block;

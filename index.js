@@ -6,6 +6,7 @@ import ThreeVideoHsl from "./src/components/ThreeVideoHsl.js";
 import ThreeText from "./src/components/ThreeText.js";
 import ThreePanels from "./src/components/ThreePanels.js";
 import ThreeLine from "./src/components/ThreeLine.js";
+import ThreeBackground from "./src/components/ThreeBackground.js";
 import Settings from "./src/components/Settings.js";
 
 import { settings } from "./src/settings/index.js";
@@ -21,24 +22,20 @@ const App = {
     ThreeVideoHsl,
     ThreeText,
     ThreeLine,
+    ThreeBackground,
   },
   setup() {
     return { settings, rectPoints };
   },
   template: `
   <three-scene>
-    <three-geometry
-      geometry="SphereGeometry"
-      width="1000"
-      height="8"
-      :color="settings.backgroundColor"
-    />
+    <three-background :color="settings.materialColor"/>
     <three-geometry
       :rotation="[-90,0,0]"
       geometry="PlaneGeometry"
       width="50"
       height="50"
-      :color="settings.panelColor"
+      :color="settings.materialColor"
       :lineColor="settings.lineColor"
     />
     <three-group :position="[0,settings.panelOffset,0]">
@@ -47,7 +44,7 @@ const App = {
           geometry="PlaneGeometry"
           :width="panel.width"
           depth="0.05"
-          :color="settings.panelColor"
+          :color="settings.materialColor"
           :lineColor="settings.lineColor"
         />
         <three-line

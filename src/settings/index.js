@@ -2,14 +2,8 @@ import { reactive } from "../deps/vue.js";
 
 export const initialSettings = [
   {
-    key: "backgroundColor",
-    title: "Background color",
-    type: "color",
-    value: "#000000",
-  },
-  {
-    key: "panelColor",
-    title: "Panel color",
+    key: "materialColor",
+    title: "Material color",
     type: "color",
     value: "#111111",
   },
@@ -17,14 +11,14 @@ export const initialSettings = [
     key: "lineColor",
     title: "Line color",
     type: "color",
-    value: "#cccccc",
+    value: "#ffffff",
   },
-  //  {
-  //   key: "lightColor",
-  //   title: "Light color",
-  //   type: "color",
-  //   value: "#ffffff",
-  // },
+  {
+    key: "lightColor",
+    title: "Light color",
+    type: "color",
+    value: "#ffffff",
+  },
   {
     key: "panelOffset",
     title: "Panel offset",
