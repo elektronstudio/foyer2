@@ -41,7 +41,7 @@ export default {
 
     const material = new MeshLineMaterial({
       color: "white",
-      lineWidth: 0.02,
+      lineWidth: 0.2,
       sizeAttenuation: 1,
       resolution: new Vector2(window.innerWidth, window.innerHeight),
       side: DoubleSide,
