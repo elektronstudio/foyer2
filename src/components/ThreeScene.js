@@ -3,6 +3,7 @@ import {
   provide,
   ref,
   onMounted,
+  onUnmounted,
   onBeforeUpdate,
 } from "../deps/vue.js";
 
@@ -82,9 +83,27 @@ export default {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.addEventListener("change", update);
 
+    var tanFOV = Math.tan(((Math.PI / 180) * camera.fov) / 2);
+    var windowHeight = window.innerHeight;
+
+    function onWindowResize(event) {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.fov =
+        (360 / Math.PI) *
+        Math.atan(tanFOV * (window.innerHeight / windowHeight));
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      update();
+    }
+
     onMounted(() => {
       el.value.append(renderer.domElement);
       update();
+      window.addEventListener("resize", onWindowResize, false);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener("resize", onWindowResize);
     });
 
     onBeforeUpdate(() => {
