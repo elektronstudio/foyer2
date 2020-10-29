@@ -118,3 +118,11 @@ export const pointsTransforms = (points) => {
   });
   return transforms;
 };
+
+export const rectPoints = (w = 1, h = 1) => [
+  [w / -2, h / 2, 0],
+  [w / 2, h / 2, 0],
+  [w / 2, h / -2, 0],
+  [w / -2, h / -2, 0],
+  [w / -2, h / 2, 0],
+];

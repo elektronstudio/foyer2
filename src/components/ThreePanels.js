@@ -17,28 +17,22 @@ const points = [
   [9, -6],
 ];
 
-import { pointsTransforms } from "../utils/index.js";
+import { pointsTransforms, rectPoints } from "../utils/index.js";
 import { settings } from "../settings/index.js";
-
-export const rectPoints = (w = 1, h = 1) => [
-  [w / -2, h / 2, 0],
-  [w / 2, h / 2, 0],
-  [w / 2, h / -2, 0],
-  [w / -2, h / -2, 0],
-  [w / -2, h / 2, 0],
-];
 
 export default {
   components: { ThreeGeometry, ThreeGroup, ThreeLine },
+  props: {
+    height: {
+      default: 6,
+    },
+  },
   setup() {
     const panels = pointsTransforms(points);
-    // const texture = new TextureLoader().load(
-    //   "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/crate.gif"
-    // );
     return { panels, settings, rectPoints };
   },
   template: `
-    <three-group :position="[0,2.01,0]" :rotation="[180,0,0]">
+    <three-group :position="[0,height / 2 + 0.01,0]" :rotation="[180,0,0]" :scale="[1,height,1]">
       <three-group
         v-for="panel in panels"
         :position="panel.position"
@@ -47,13 +41,12 @@ export default {
         <three-geometry
           geometry="PlaneGeometry"
           :width="panel.width"
-          :height="4"
           depth="0.05"
           :color="settings.panelColor"
           :lineColor="settings.lineColor"
         />
         <three-line
-          :points="rectPoints(panel.width, 4)"
+          :points="rectPoints(panel.width, 1)"
           lineWidth="0.03" 
         />
       </three-group>
