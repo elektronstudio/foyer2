@@ -22,7 +22,7 @@ export default {
     );
     const material = new LineBasicMaterial({
       color: "red",
-      linewidth: 10,
+      linewidth: 1000,
     });
     const object = new Line(geometry, material);
 
