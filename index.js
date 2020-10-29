@@ -7,6 +7,7 @@ import ThreeText from "./src/components/ThreeText.js";
 import ThreePanels from "./src/components/ThreePanels.js";
 import ThreeLine from "./src/components/ThreeLine.js";
 import ThreeBackground from "./src/components/ThreeBackground.js";
+import ThreeLights from "./src/components/ThreeLights.js";
 import Settings from "./src/components/Settings.js";
 
 import { settings } from "./src/settings/index.js";
@@ -23,6 +24,7 @@ const App = {
     ThreeText,
     ThreeLine,
     ThreeBackground,
+    ThreeLights,
   },
   setup() {
     return { settings, rectPoints };
@@ -30,6 +32,7 @@ const App = {
   template: `
   <three-scene>
     <three-background :color="settings.materialColor"/>
+    <three-lights :color="settings.lightColor" />
     <three-geometry
       :rotation="[-90,0,0]"
       geometry="PlaneGeometry"
