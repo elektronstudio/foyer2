@@ -3,6 +3,7 @@ export * from "https://cdn.skypack.dev/pin/three@v0.121.1-01UDfMGdzKBc6pDlaRa9/m
 export * from "https://cdn.skypack.dev/pin/three@v0.121.1-01UDfMGdzKBc6pDlaRa9/mode=raw,min/examples/jsm/postprocessing/EffectComposer.js";
 export * from "https://cdn.skypack.dev/pin/three@v0.121.1-01UDfMGdzKBc6pDlaRa9/mode=raw,min/examples/jsm/postprocessing/RenderPass.js";
 export * from "https://cdn.skypack.dev/pin/three@v0.121.1-01UDfMGdzKBc6pDlaRa9/mode=raw,min/examples/jsm/postprocessing/UnrealBloomPass.js";
+export * from "https://cdn.skypack.dev/pin/three@v0.121.1-01UDfMGdzKBc6pDlaRa9/mode=raw,min/examples/jsm/postprocessing/BloomPass.js";
 
 import * as THREE from "https://cdn.skypack.dev/pin/three@v0.121.1-01UDfMGdzKBc6pDlaRa9/min/three.js";
 

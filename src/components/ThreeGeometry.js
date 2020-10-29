@@ -71,7 +71,7 @@ export default {
       side: DoubleSide,
     });
     const strokeObject = new LineSegments(edges, strokeMaterial);
-    group.add(strokeObject);
+    //group.add(strokeObject);
 
     sceneContext.scene.add(group);
 

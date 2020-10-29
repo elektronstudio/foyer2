@@ -25,7 +25,6 @@ const App = {
   template: `
   <three-scene>
     <!-- <three-video-hsl :width="3" /> -->
-    <three-line :points="[[0,0,0],[-10,10,10]]" />
     <three-text
       :position="[-1, 1.5, -1]"
       text="Live"

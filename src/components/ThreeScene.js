@@ -50,7 +50,8 @@ export default {
     camera.lookAt(0, 1, 0);
 
     const renderer = new WebGLRenderer({
-      antialias: false,
+      antialias: true,
+      alpha: true,
     });
     renderer.setSize(width, height);
     renderer.setPixelRatio(
