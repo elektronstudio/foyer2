@@ -20,9 +20,9 @@ export const watchTransform = (props, object) => {
   watch(
     () => props.position,
     (position) => {
-      object.position.x += position[0];
-      object.position.y += position[1];
-      object.position.z += position[2];
+      object.position.x = parseFloat(position[0]);
+      object.position.y = parseFloat(position[1]);
+      object.position.z = parseFloat(position[2]);
     },
     { immediate: true }
   );
@@ -30,9 +30,9 @@ export const watchTransform = (props, object) => {
   watch(
     () => props.rotation,
     (rotation) => {
-      object.rotation.x = deg2rad(rotation[0]);
-      object.rotation.y = deg2rad(rotation[1]);
-      object.rotation.z = deg2rad(rotation[2]);
+      object.rotation.x = parseFloat(deg2rad(rotation[0]));
+      object.rotation.y = parseFloat(deg2rad(rotation[1]));
+      object.rotation.z = parseFloat(deg2rad(rotation[2]));
     },
     { immediate: true }
   );
@@ -40,9 +40,9 @@ export const watchTransform = (props, object) => {
   watch(
     () => props.scale,
     (scale) => {
-      object.scale.x *= scale[0];
-      object.scale.y *= scale[1];
-      object.scale.z *= scale[2];
+      object.scale.x = parseFloat(scale[0]);
+      object.scale.y = parseFloat(scale[1]);
+      object.scale.z = parseFloat(scale[2]);
     },
     { immediate: true }
   );

@@ -17,22 +17,36 @@ const points = [
   [9, -6],
 ];
 
-import { pointsTransforms, rectPoints } from "../utils/index.js";
+import {
+  transformProps,
+  pointsTransforms,
+  rectPoints,
+} from "../utils/index.js";
 import { settings } from "../settings/index.js";
 
 export default {
   components: { ThreeGeometry, ThreeGroup, ThreeLine },
   props: {
+    ...transformProps,
     height: {
-      default: 6,
+      default: 4,
     },
   },
-  setup() {
+  setup(props) {
     const panels = pointsTransforms(points);
     return { panels, settings, rectPoints };
   },
   template: `
-    <three-group :position="[0,height / 2 + 0.01,0]" :rotation="[180,0,0]" :scale="[1,height,1]">
+  <three-group
+    :position="position"
+    :rotation="rotation"
+    :scale="scale"
+  >
+    <three-group
+      :position="[0,height / 2 + 0.1,0]"
+      :rotation="[180,0,0]"
+      :scale="[1,height,1]"
+    >
       <three-group
         v-for="panel in panels"
         :position="panel.position"
@@ -51,5 +65,6 @@ export default {
         />
       </three-group>
     </three-group>
+  </three-group> 
   `,
 };

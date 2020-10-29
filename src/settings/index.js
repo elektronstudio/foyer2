@@ -30,9 +30,9 @@ export const initialSettings = [
     title: "Panel offset",
     type: "range",
     value: 0,
-    min: -10,
+    min: -5,
     max: 0,
-    step: 0.1,
+    step: 0.01,
   },
   // {
   //   key: "videoOffset",
