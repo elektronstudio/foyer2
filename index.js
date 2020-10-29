@@ -46,7 +46,7 @@ const App = {
         />
         <three-line
           :points="rectPoints(panel.width, 1)"
-          lineWidth="0.03" 
+          :lineColor="settings.lineColor"
         />  
       </three-panels>
       <three-text
