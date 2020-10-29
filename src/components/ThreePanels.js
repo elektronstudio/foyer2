@@ -52,7 +52,10 @@ export default {
           :color="settings.panelColor"
           :lineColor="settings.lineColor"
         />
-        <three-line :points="rectPoints(panel.width, 4)" />
+        <three-line
+          :points="rectPoints(panel.width, 4)"
+          lineWidth="0.03" 
+        />
       </three-group>
     </three-group>
   `,

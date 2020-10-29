@@ -19,6 +19,8 @@ export default {
   props: {
     ...transformProps,
     points: { default: [] },
+    lineColor: { default: "white" },
+    lineWidth: { default: 0.01 },
   },
   setup(props) {
     const sceneContext = inject("sceneContext");
@@ -40,10 +42,8 @@ export default {
     geometry.setGeometry(props.points.flat());
 
     const material = new MeshLineMaterial({
-      color: "white",
-      lineWidth: 0.03,
-      sizeAttenuation: 1,
-      //resolution: new Vector2(window.innerWidth, window.innerHeight),
+      color: props.lineColor,
+      lineWidth: props.lineWidth,
       side: DoubleSide,
     });
 

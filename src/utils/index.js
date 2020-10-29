@@ -53,7 +53,7 @@ export const materialProps = {
     default: "black",
   },
   lineColor: {
-    default: "white",
+    default: null,
   },
   opacity: {
     default: 1,
