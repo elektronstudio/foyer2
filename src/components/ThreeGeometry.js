@@ -64,14 +64,16 @@ export default {
 
     group.add(fillObject);
 
-    const edges = new EdgesGeometry(geometry);
-    const strokeMaterial = new LineBasicMaterial({
-      color: props.lineColor,
-      opacity: props.lineOpacity,
-      side: DoubleSide,
-    });
-    const strokeObject = new LineSegments(edges, strokeMaterial);
-    group.add(strokeObject);
+    if (props.lineColor) {
+      const edges = new EdgesGeometry(geometry);
+      const strokeMaterial = new LineBasicMaterial({
+        color: props.lineColor,
+        opacity: props.lineOpacity,
+        side: DoubleSide,
+      });
+      const strokeObject = new LineSegments(edges, strokeMaterial);
+      group.add(strokeObject);
+    }
 
     sceneContext.scene.add(group);
 

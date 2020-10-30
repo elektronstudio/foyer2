@@ -32,9 +32,9 @@ export default {
         v-if="!initialSettings[i].textarea"
         v-model="settings[key]" 
         :type="initialSettings[i].type"
-        :min="initialSettings[i].min || 0"
-        :max="initialSettings[i].max || 100"
-        :step="initialSettings[i].step || 1"
+        :min="initialSettings[i].hasOwnProperty('min') ? initialSettings[i].min : 0"
+        :max="initialSettings[i].hasOwnProperty('max') ? initialSettings[i].max : 100"
+        :step="initialSettings[i].hasOwnProperty('step') ? initialSettings[i].step : 1"
       />
     </template>
   </div>
