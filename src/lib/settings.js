@@ -2,6 +2,12 @@ import { reactive } from "../deps/vue.js";
 
 export const initialSettings = [
   {
+    key: "userColor",
+    title: "User color",
+    type: "color",
+    value: "#ddaaff",
+  },
+  {
     key: "materialColor",
     title: "Material color",
     type: "color",

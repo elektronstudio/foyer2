@@ -63,20 +63,22 @@ export const materialProps = {
   },
 };
 
-export const watchColor = (props, object) => {
+export const watchColor = (props, object, callback = () => {}) => {
   watch(
     () => props.color,
     (color) => {
       object.material.color.set(color);
+      callback();
     }
   );
 };
 
-export const watchLinecolor = (props, object) => {
+export const watchLinecolor = (props, object, callback = () => {}) => {
   watch(
     () => props.lineColor,
     (color) => {
       object.material.color.set(color);
+      callback();
     }
   );
 };

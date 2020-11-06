@@ -20,3 +20,16 @@ export const upsert = (arr, callback, value) => {
   }
   return arr;
 };
+
+export const throttle = (fn, delay) => {
+  let timeout = false;
+  return (...rest) => {
+    if (!timeout) {
+      timeout = true;
+      fn.apply(this, rest);
+      setTimeout(() => {
+        timeout = false;
+      }, delay);
+    }
+  };
+};

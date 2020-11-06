@@ -62,7 +62,7 @@ export default {
     );
 
     const fillObject = new Mesh(geometry, fillMaterial.value);
-    watchColor(props, fillObject);
+    watchColor(props, fillObject, sceneContext.update);
 
     group.add(fillObject);
 

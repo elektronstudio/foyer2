@@ -1,5 +1,12 @@
-import { ref, computed, onMounted, onUnmounted } from "../deps/vue.js";
-import { socket, createMessage, upsert, randomint } from "./index.js";
+import { ref, computed, onMounted, onUnmounted, watch } from "../deps/vue.js";
+import {
+  socket,
+  createMessage,
+  upsert,
+  randomint,
+  settings,
+  throttle,
+} from "./index.js";
 
 export const useLocalstorage = (key = null, initialValue = null) => {
   const value = ref(initialValue);
@@ -31,6 +38,22 @@ export const useLocalstorage = (key = null, initialValue = null) => {
 export const useUsers = (channel, user) => {
   const users = ref([]);
   const count = computed(() => user.value.length);
+
+  watch(
+    () => settings.userColor,
+    throttle(
+      () =>
+        socket.send(
+          createMessage({
+            type: "USER_UPDATE",
+            userId: user.value.userId,
+            userName: user.value.userName,
+            value: { userColor: settings.userColor },
+          })
+        ),
+      500
+    )
+  );
 
   socket.addEventListener("message", ({ data }) => {
     const message = JSON.parse(data);
