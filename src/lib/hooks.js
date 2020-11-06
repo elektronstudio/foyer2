@@ -40,7 +40,12 @@ export const useUsers = (channel, user) => {
   const count = computed(() => user.value.length);
 
   watch(
-    [() => settings.userColor, () => settings.userX],
+    [
+      () => settings.userColor,
+      () => settings.userX,
+      () => settings.userY,
+      () => settings.userZ,
+    ],
     throttle(
       () =>
         socket.send(
@@ -48,7 +53,12 @@ export const useUsers = (channel, user) => {
             type: "USER_UPDATE",
             userId: user.value.userId,
             userName: user.value.userName,
-            value: { userColor: settings.userColor, userX: settings.userX },
+            value: {
+              userColor: settings.userColor,
+              userX: settings.userX,
+              userY: settings.userY,
+              userZ: settings.userZ,
+            },
           })
         ),
       200

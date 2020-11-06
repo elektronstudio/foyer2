@@ -2,12 +2,6 @@ import { reactive } from "../deps/vue.js";
 
 export const initialSettings = [
   {
-    key: "userColor",
-    title: "User color",
-    type: "color",
-    value: "#ddaaff",
-  },
-  {
     key: "userX",
     title: "User X coordinate",
     type: "range",
@@ -15,6 +9,30 @@ export const initialSettings = [
     min: -5,
     max: 5,
     step: 0.01,
+  },
+  {
+    key: "userY",
+    title: "User Y coordinate",
+    type: "range",
+    value: 0,
+    min: 0,
+    max: 10,
+    step: 0.01,
+  },
+  {
+    key: "userZ",
+    title: "User Z coordinate",
+    type: "range",
+    value: 0,
+    min: 5,
+    max: 10,
+    step: 0.01,
+  },
+  {
+    key: "userColor",
+    title: "User color",
+    type: "color",
+    value: "#ddaaff",
   },
   {
     key: "materialColor",

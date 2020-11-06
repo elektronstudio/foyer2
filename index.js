@@ -37,6 +37,8 @@ const ThreeUsers = {
     });
     settings.userColor = user.value.userColor;
     settings.userX = user.value.userX;
+    settings.userY = user.value.userY;
+    settings.userZ = user.value.userZ;
     const { users } = useUsers("foyer2", user);
     watch(
       () => users.value,
