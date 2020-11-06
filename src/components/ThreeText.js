@@ -1,6 +1,6 @@
 import { inject, watch, onUnmounted } from "../deps/vue.js";
 import { Text } from "https://cdn.skypack.dev/troika-three-text";
-import { transformProps, watchTransform } from "../utils/index.js";
+import { transformProps, watchTransform } from "../lib/index.js";
 
 export default {
   props: {

@@ -17,12 +17,9 @@ const points = [
   [9, -6],
 ];
 
-import {
-  transformProps,
-  pointsTransforms,
-  rectPoints,
-} from "../utils/index.js";
-import { settings } from "../settings/index.js";
+import { transformProps, pointsTransforms, rectPoints } from "../lib/index.js";
+
+import { settings } from "../lib/index.js";
 
 export default {
   components: { ThreeGeometry, ThreeGroup, ThreeLine },

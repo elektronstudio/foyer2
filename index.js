@@ -10,8 +10,7 @@ import ThreeBackground from "./src/components/ThreeBackground.js";
 import ThreeLights from "./src/components/ThreeLights.js";
 import Settings from "./src/components/Settings.js";
 
-import { settings } from "./src/settings/index.js";
-import { rectPoints } from "./src/utils/index.js";
+import { settings, rectPoints } from "./src/lib/index.js";
 
 const App = {
   components: {

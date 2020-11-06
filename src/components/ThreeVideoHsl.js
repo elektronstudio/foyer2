@@ -1,6 +1,6 @@
 import { inject, watch } from "../deps/vue.js";
 import { Hls } from "../deps/hls.js";
-import { watchTransform } from "../utils/index.js";
+import { watchTransform } from "../lib/index.js";
 
 import {
   PlaneGeometry,

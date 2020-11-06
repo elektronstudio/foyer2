@@ -63,33 +63,6 @@ export const materialProps = {
   },
 };
 
-// export const watchMaterial = (props, object) => {
-//   watch(
-//     () => props.color,
-//     (color) => {
-//       object.children[0].material.color.set(color);
-//     }
-//   );
-//   watch(
-//     () => props.opacity,
-//     (opacity) => {
-//       object.children[0].material.opacity.set(opacity);
-//     }
-//   );
-//   watch(
-//     () => props.lineColor,
-//     (lineColor) => {
-//       object.children[1].material.color.set(lineColor);
-//     }
-//   );
-//   watch(
-//     () => props.lineOpacity,
-//     (lineOpacity) => {
-//       object.children[1].material.opacity.set(opacity);
-//     }
-//   );
-// };
-
 export const watchColor = (props, object) => {
   watch(
     () => props.color,

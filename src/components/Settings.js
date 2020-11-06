@@ -1,4 +1,4 @@
-import { initialSettings, settings } from "../settings/index.js";
+import { initialSettings, settings } from "../lib/index.js";
 
 export default {
   setup() {

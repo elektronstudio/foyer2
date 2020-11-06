@@ -17,7 +17,7 @@ import {
   transformProps,
   watchTransform,
   watchLinecolor,
-} from "../utils/index.js";
+} from "../lib/index.js";
 
 export default {
   props: {
