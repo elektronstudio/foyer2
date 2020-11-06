@@ -1,5 +1,5 @@
 import { ref, computed, onMounted, onUnmounted } from "../deps/vue.js";
-import { socket, createMessage } from "./index.js";
+import { socket, createMessage, upsert, randomint } from "./index.js";
 
 export const useLocalstorage = (key = null, initialValue = null) => {
   const value = ref(initialValue);
@@ -28,7 +28,7 @@ export const useLocalstorage = (key = null, initialValue = null) => {
   return value;
 };
 
-export const useUsers = (channel, userId, userName) => {
+export const useUsers = (channel, user) => {
   const users = ref([]);
   const count = computed(() => user.value.length);
 
@@ -45,32 +45,59 @@ export const useUsers = (channel, userId, userName) => {
     }
   });
 
-  const onJoinChannel = () => {
+  // socket.addEventListener("message", ({ data }) => {
+  //   const message = JSON.parse(data);
+  //   if (
+  //     message &&
+  //     message.userId &&
+  //     message.type === "USER_UPDATE" &&
+  //     message.value
+  //   ) {
+  //     const i = users.value.findIndex((user) => user.userId === message.userId);
+  //     users.value[i] = { ...users.value[i], ...message.value };
+  //     console.log(users.value);
+  //   }
+  // });
+
+  const joinChannel = () => {
     const outgoingMessage = createMessage({
       type: "CHANNEL_JOIN",
       channel: channel,
-      userId: userId.value,
-      userName: userName.value,
+      userId: user.value.userId,
+      userName: user.value.userName,
+      value: user.value,
     });
     socket.send(outgoingMessage);
   };
 
-  const onLeaveChannel = () => {
+  // const userUpdate = () => {
+  //   const outgoingMessage = createMessage({
+  //     type: "USER_UPDATE",
+  //     channel: channel,
+  //     userId: user.value.userId,
+  //     userName: user.value.userName,
+  //     value: user.value,
+  //   });
+  //   socket.send(outgoingMessage);
+  // };
+
+  const leaveChannel = () => {
     const outgoingMessage = createMessage({
       type: "CHANNEL_LEAVE",
       channel: channel,
-      userId: userId.value,
-      userName: userName.value,
+      userId: user.value.userId,
+      userName: user.value.userName,
     });
     socket.send(outgoingMessage);
   };
 
   onMounted(() => {
-    onJoinChannel();
-    window.addEventListener("beforeunload", onLeaveChannel);
+    joinChannel();
+    //userUpdate();
+    window.addEventListener("beforeunload", leaveChannel);
   });
 
-  onUnmounted(() => window.removeEventListener("beforeunload", onStop));
+  onUnmounted(() => window.removeEventListener("beforeunload", leaveChannel));
 
-  return { users, count };
+  return { users, count, send: socket.send };
 };

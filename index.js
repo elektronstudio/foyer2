@@ -16,25 +16,36 @@ import {
   useLocalstorage,
   randomId,
   useUsers,
+  random,
+  randomint,
 } from "./src/lib/index.js";
 
 const ThreeUsers = {
   components: { ThreeGeometry },
   setup() {
-    const userId = useLocalstorage("ELEKTRON_USER_ID", randomId());
-    const { users } = useUsers("foyer2", userId, userId);
-    const avatars = computed(() =>
-      users.value.map((user) => {
-        user.position = [Math.random() * 5, 1, Math.random() * 5 + 2];
-        return user;
-      })
-    );
-    watchEffect(() => console.log(avatars.value));
-    // return () => null;
-    return { avatars };
+    const userId = randomId();
+    const user = useLocalstorage("ELEKTRON_USER", {
+      userId,
+      userName: userId,
+      userColor: `rgb(${randomint(0, 255)},${randomint(0, 255)},${randomint(
+        0,
+        255
+      )})`,
+      userPosition: [random(0, 1), random(1, 2), random(0, 1)],
+      userRotation: [random(-10, 10), random(-10, 10), random(-10, 10)],
+    });
+    const { users } = useUsers("foyer2", user);
+    return { users };
   },
   template: `
-    <three-geometry color="red" v-for="avatar in avatars" :position="avatar.position" />
+    <three-geometry 
+      v-for="user in users"
+      :position="user.userPosition"
+      :rotation="user.userRotation"
+      :color="user.userColor"
+      :width="0.5"
+      :depth="0.5"
+    />
   `,
 };
 
@@ -68,7 +79,7 @@ const App = {
       :lineColor="settings.lineColor"
     />
     <three-group :position="[0,settings.panelOffset,0]">
-      <three-panels v-slot="{ panel }">
+      <!--three-panels v-slot="{ panel }">
         <three-geometry
           geometry="PlaneGeometry"
           :width="panel.width"
@@ -80,7 +91,7 @@ const App = {
           :points="rectPoints(panel.width, 1)"
           :lineColor="settings.lineColor"
         />  
-      </three-panels>
+      </three-panels-->
       <three-text
         :position="[-1, 1.5, -1]"
         text="Live"
