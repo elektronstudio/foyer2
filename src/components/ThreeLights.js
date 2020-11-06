@@ -13,11 +13,11 @@ export default {
     sceneContext.scene.add(ambientLight);
 
     const directionalLightOne = new PointLight(props.color);
-    directionalLightOne.position.set(-40, 40, 40);
+    directionalLightOne.position.set(-40, 140, 40);
     sceneContext.scene.add(directionalLightOne);
 
     const directionalLightTwo = new PointLight(props.color);
-    directionalLightTwo.position.set(40, 40, 40);
+    directionalLightTwo.position.set(40, 140, 40);
     sceneContext.scene.add(directionalLightTwo);
 
     watch(

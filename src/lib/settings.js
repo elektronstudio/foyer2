@@ -8,6 +8,15 @@ export const initialSettings = [
     value: "#ddaaff",
   },
   {
+    key: "userX",
+    title: "User X coordinate",
+    type: "range",
+    value: 0,
+    min: -5,
+    max: 5,
+    step: 0.01,
+  },
+  {
     key: "materialColor",
     title: "Material color",
     type: "color",

@@ -1,4 +1,4 @@
-import { createApp, ref, watchEffect, computed } from "./src/deps/vue.js";
+import { createApp, ref, watch, computed, inject } from "./src/deps/vue.js";
 import ThreeScene from "./src/components/ThreeScene.js";
 import ThreeGroup from "./src/components/ThreeGroup.js";
 import ThreeGeometry from "./src/components/ThreeGeometry.js";
@@ -23,26 +23,34 @@ import {
 const ThreeUsers = {
   components: { ThreeGeometry },
   setup() {
+    const sceneContext = inject("sceneContext");
     const userId = randomId();
+    const userColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
     const user = useLocalstorage("ELEKTRON_USER", {
       userId,
       userName: userId,
-      userColor: `rgb(${randomint(0, 255)},${randomint(0, 255)},${randomint(
-        0,
-        255
-      )})`,
-      userPosition: [random(0, 1), random(1, 2), random(0, 1)],
+      userColor,
+      userX: random(0, 1),
+      userY: random(1, 2),
+      userZ: random(0, 1),
       userRotation: [random(-10, 10), random(-10, 10), random(-10, 10)],
     });
+    settings.userColor = user.value.userColor;
+    settings.userX = user.value.userX;
     const { users } = useUsers("foyer2", user);
+    watch(
+      () => users.value,
+      () => sceneContext.update()
+    );
     return { users };
   },
   template: `
     <three-geometry 
       v-for="user in users"
-      :position="user.userPosition"
+      :position="[user.userX,user.userY,user.userZ]"
       :rotation="user.userRotation"
       :color="user.userColor"
+      lineColor="white"
       :width="0.5"
       :depth="0.5"
     />
@@ -79,7 +87,7 @@ const App = {
       :lineColor="settings.lineColor"
     />
     <three-group :position="[0,settings.panelOffset,0]">
-      <!--three-panels v-slot="{ panel }">
+      <three-panels v-slot="{ panel }">
         <three-geometry
           geometry="PlaneGeometry"
           :width="panel.width"
@@ -91,7 +99,7 @@ const App = {
           :points="rectPoints(panel.width, 1)"
           :lineColor="settings.lineColor"
         />  
-      </three-panels-->
+      </three-panels>
       <three-text
         :position="[-1, 1.5, -1]"
         text="Live"

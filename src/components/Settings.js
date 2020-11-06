@@ -30,7 +30,8 @@ export default {
       />
       <input
         v-if="!initialSettings[i].textarea"
-        v-model="settings[key]" 
+        :value="settings[key]" 
+        @input="settings[key] = parseFloat($event.target.value)"
         :type="initialSettings[i].type"
         :min="initialSettings[i].hasOwnProperty('min') ? initialSettings[i].min : 0"
         :max="initialSettings[i].hasOwnProperty('max') ? initialSettings[i].max : 100"
