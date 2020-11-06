@@ -32,7 +32,7 @@ const ThreeUsers = {
       userColor,
       userX: random(0, 1),
       userY: random(1, 2),
-      userZ: random(0, 1),
+      userZ: random(4, 5),
       userRotation: [random(-10, 10), random(-10, 10), random(-10, 10)],
     });
     settings.userColor = user.value.userColor;
