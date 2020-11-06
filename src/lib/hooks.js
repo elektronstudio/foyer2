@@ -1,3 +1,6 @@
+import { ref, computed, onMounted, onUnmounted } from "../deps/vue.js";
+import { socket, createMessage } from "./index.js";
+
 export const useLocalstorage = (key = null, initialValue = null) => {
   const value = ref(initialValue);
   if (window.localStorage !== undefined) {
@@ -27,10 +30,10 @@ export const useLocalstorage = (key = null, initialValue = null) => {
 
 export const useUsers = (channel, userId, userName) => {
   const users = ref([]);
-  const count = computed(() => user.value.lenght);
+  const count = computed(() => user.value.length);
 
   socket.addEventListener("message", ({ data }) => {
-    const message = safeJsonParse(data);
+    const message = JSON.parse(data);
     if (
       message &&
       message.type === "CHANNEL_INFO" &&
@@ -49,7 +52,7 @@ export const useUsers = (channel, userId, userName) => {
       userId: userId.value,
       userName: userName.value,
     });
-    socket.send(JSON.stringify(outgoingMessage));
+    socket.send(outgoingMessage);
   };
 
   const onLeaveChannel = () => {
@@ -59,7 +62,7 @@ export const useUsers = (channel, userId, userName) => {
       userId: userId.value,
       userName: userName.value,
     });
-    socket.send(JSON.stringify(outgoingMessage));
+    socket.send(outgoingMessage);
   };
 
   onMounted(() => {

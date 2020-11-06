@@ -1,4 +1,4 @@
-import { createApp, ref } from "./src/deps/vue.js";
+import { createApp, ref, watchEffect, computed } from "./src/deps/vue.js";
 import ThreeScene from "./src/components/ThreeScene.js";
 import ThreeGroup from "./src/components/ThreeGroup.js";
 import ThreeGeometry from "./src/components/ThreeGeometry.js";
@@ -10,10 +10,37 @@ import ThreeBackground from "./src/components/ThreeBackground.js";
 import ThreeLights from "./src/components/ThreeLights.js";
 import Settings from "./src/components/Settings.js";
 
-import { settings, rectPoints } from "./src/lib/index.js";
+import {
+  settings,
+  rectPoints,
+  useLocalstorage,
+  randomId,
+  useUsers,
+} from "./src/lib/index.js";
+
+const ThreeUsers = {
+  components: { ThreeGeometry },
+  setup() {
+    const userId = useLocalstorage("ELEKTRON_USER_ID", randomId());
+    const { users } = useUsers("foyer2", userId, userId);
+    const avatars = computed(() =>
+      users.value.map((user) => {
+        user.position = [Math.random() * 5, 1, Math.random() * 5 + 2];
+        return user;
+      })
+    );
+    watchEffect(() => console.log(avatars.value));
+    // return () => null;
+    return { avatars };
+  },
+  template: `
+    <three-geometry color="red" v-for="avatar in avatars" :position="avatar.position" />
+  `,
+};
 
 const App = {
   components: {
+    ThreeUsers,
     ThreePanels,
     ThreeGroup,
     Settings,
@@ -63,6 +90,7 @@ const App = {
         letterSpacing="-0.01"
       />
     </three-group>
+    <three-users />
   </three-scene>
   <settings />
   <!-- <div style="position: fixed; top: 0; left: 0; color: white">{{ settings.panelOffset }}</div> -->
