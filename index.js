@@ -42,9 +42,10 @@ const ThreeUsers = {
     <pre
       style="
         position: fixed;
-        top: 0;
+        bottom: 0;
         left: 0;
         color: white;
+        opacity: 0.2
       "
     >
  {{ JSON.stringify(users,null,1) }}
