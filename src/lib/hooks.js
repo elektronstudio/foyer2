@@ -6,6 +6,7 @@ import {
   randomint,
   settings,
   throttle,
+  websocketThrottle,
 } from "./index.js";
 
 export const useLocalstorage = (key = null, initialValue = null) => {
@@ -61,7 +62,8 @@ export const useUsers = (channel, user) => {
             },
           })
         ),
-      500
+      0
+      // 0websocketThrottle
     )
   );
 

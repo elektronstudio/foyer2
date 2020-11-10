@@ -2,4 +2,4 @@
 
 export const chatUrl = "ws://localhost:8080";
 
-export const websocketThrottle = 200;
+export const websocketThrottle = 0;

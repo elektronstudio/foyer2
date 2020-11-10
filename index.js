@@ -18,6 +18,7 @@ import {
   useUsers,
   random,
   randomint,
+  trunc,
 } from "./src/lib/index.js";
 
 const ThreeUsers = {
@@ -25,14 +26,17 @@ const ThreeUsers = {
   setup() {
     const sceneContext = inject("sceneContext");
     const userId = randomId();
-    const userColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-    const user = useLocalstorage("ELEKTRON_USER", {
+    // const userColor = `#${((Math.random() * 0xffffff) << 0)
+    //   .toString(16)
+    //   .padStart(6, "0")}`;
+    const userColor = "#ffffff";
+    const user = useLocalstorage("elektron_user", {
       userId,
       userName: userId,
       userColor,
-      userX: random(0, 1),
-      userY: random(1, 2),
-      userZ: random(4, 5),
+      userX: trunc(random(0, 1), 1),
+      userY: trunc(random(1, 2), 1),
+      userZ: trunc(random(4, 5), 1),
       userRotation: [random(-10, 10), random(-10, 10), random(-10, 10)],
     });
     settings.userColor = user.value.userColor;

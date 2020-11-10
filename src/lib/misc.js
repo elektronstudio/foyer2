@@ -33,3 +33,6 @@ export const throttle = (fn, delay) => {
     }
   };
 };
+
+export const trunc = (value, decimals = 1) =>
+  Number(Math.round(value + "e" + decimals) + "e-" + decimals);
