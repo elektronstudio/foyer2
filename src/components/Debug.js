@@ -1,0 +1,34 @@
+import { inject } from "../deps/vue.js";
+
+import { socket, createMessage, useUsers } from "../lib/index.js";
+
+export default {
+  setup() {
+    const sceneContext = inject("sceneContext");
+    const onReset = () => {
+      socket.send(
+        createMessage({
+          type: "CHAT",
+          channel: "foyer2",
+          value: "/reset",
+        })
+      );
+      window.localStorage.clear();
+      window.location.reload();
+      sceneContext.update();
+    };
+    return { onReset };
+  },
+  template: `
+  <div
+    style="
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      padding: 15px;
+    "
+  >
+    <button @click="onReset">Reset</button>
+  </div>
+  `,
+};

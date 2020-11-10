@@ -10,11 +10,13 @@ import ThreeBackground from "./src/components/ThreeBackground.js";
 import ThreeLights from "./src/components/ThreeLights.js";
 import ThreeUsers from "./src/components/ThreeUsers.js";
 import Settings from "./src/components/Settings.js";
+import Debug from "./src/components/Debug.js";
 
 import { settings, rectPoints, useUser, useUsers } from "./src/lib/index.js";
 
 const App = {
   components: {
+    Debug,
     Settings,
     ThreeBackground,
     ThreeGeometry,
@@ -67,8 +69,9 @@ const App = {
       />
     </three-group>
     <three-users />
+    <debug />
+    <settings />
   </three-scene>
-  <settings />
 `,
 };
 

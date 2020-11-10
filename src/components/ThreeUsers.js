@@ -1,11 +1,13 @@
 import { inject, watch } from "../deps/vue.js";
 
-import { useUsers } from "../lib/index.js";
+import { useUsers, chunk } from "../lib/index.js";
 
 import ThreeGeometry from "./ThreeGeometry.js";
+import ThreeGroup from "./ThreeGroup.js";
+import ThreeText from "./ThreeText.js";
 
 export default {
-  components: { ThreeGeometry },
+  components: { ThreeGeometry, ThreeGroup, ThreeText },
   setup() {
     const sceneContext = inject("sceneContext");
 
@@ -16,31 +18,43 @@ export default {
       () => sceneContext.update()
     );
 
-    return { users };
+    const formatUsername = (str) => str.slice(0, 3);
+    return { users, formatUsername };
   },
   template: `
-    <three-geometry 
+    <three-group
       v-for="user in users"
       :position="[user.userX,user.userY,user.userZ]"
       :rotation="[user.userRotationX,user.userRotationY,user.userRotationZ]"
-      :color="user.userColor"
-      lineColor="white"
-      :width="0.5"
-      :depth="0.5"
-      :height="1.5"
-    />
-    <pre
+    >
+      <three-geometry
+        :color="user.userColor"
+        lineColor="white"
+        :width="1"
+        :depth="0.1"
+        :height="1.5"
+      />
+      <three-text
+        :text="formatUsername(user.userName)"
+        anchorX="left"
+        anchorY="top"
+        fontSize="0.2"
+        color="#ddd"
+        :position="[-0.3,0.6,0.1]"
+      />
+    </three-group>
+    <div
       style="
-        display: none;
-        pointer-events: none;
         position: fixed;
-        bottom: 0;
+        top: 0;
         left: 0;
         color: white;
-        opacity: 0.2
+        opacity: 0.5;
+        overflow: scroll;
+        pointer-events: none;
       "
     >
- {{ JSON.stringify(users,null,1) }}
-    </pre>
+      <pre>{{ JSON.stringify({},null,1) }}</pre>
+    </div>
   `,
 };

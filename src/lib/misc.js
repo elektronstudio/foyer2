@@ -70,3 +70,8 @@ export const useLocalstorage = (key = null, initialValue = null) => {
 
 export const randomHexColor = () =>
   `#${((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0")}`;
+
+export const chunk = (arr, length) =>
+  Array.from({ length: Math.ceil(arr.length / length) }).map((_, n) =>
+    arr.slice(n * length, n * length + length)
+  );
