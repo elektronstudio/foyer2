@@ -19,11 +19,6 @@ const ThreeUsers = {
 
     const user = useUser();
 
-    settings.userColor = user.value.userColor;
-    settings.userX = user.value.userX;
-    settings.userY = user.value.userY;
-    settings.userZ = user.value.userZ;
-
     const users = useUsers("foyer2", user);
 
     watch(
@@ -36,8 +31,8 @@ const ThreeUsers = {
   template: `
     <three-geometry 
       v-for="user in users"
-      :position="[user.userX,[user.userY - 1],user.userZ]"
-      :rotation="user.userRotation"
+      :position="[user.userX,user.userY,user.userZ]"
+      :rotation="[user.userRotationX,user.userRotationY,user.userRotationZ]"
       :color="user.userColor"
       lineColor="white"
       :width="0.5"

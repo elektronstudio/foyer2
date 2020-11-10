@@ -15,6 +15,9 @@ export const useUsers = (channel, user) => {
       () => settings.userX,
       () => settings.userY,
       () => settings.userZ,
+      () => settings.userRotationX,
+      () => settings.userRotationY,
+      () => settings.userRotationZ,
     ],
     throttle(
       () =>
@@ -28,6 +31,9 @@ export const useUsers = (channel, user) => {
               userX: settings.userX,
               userY: settings.userY,
               userZ: settings.userZ,
+              userRotationX: settings.userRotationX,
+              userRotationY: settings.userRotationY,
+              userRotationZ: settings.userRotationZ,
             },
           })
         ),
