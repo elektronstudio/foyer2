@@ -16,7 +16,7 @@ export const initialSettings = [
     type: "range",
     value: 0,
     min: 0,
-    max: 10,
+    max: 5,
     step: 0.01,
   },
   {

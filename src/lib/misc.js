@@ -65,3 +65,6 @@ export const useLocalstorage = (key = null, initialValue = null) => {
   }
   return value;
 };
+
+export const randomHexColor = () =>
+  `#${((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0")}`;

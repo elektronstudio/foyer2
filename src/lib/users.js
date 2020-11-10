@@ -9,8 +9,6 @@ import {
 
 export const useUsers = (channel, user) => {
   const users = ref([]);
-  const count = computed(() => user.value.length);
-
   watch(
     [
       () => settings.userColor,
@@ -73,5 +71,5 @@ export const useUsers = (channel, user) => {
 
   // onUnmounted(() => window.removeEventListener("beforeunload", leaveChannel));
 
-  return { users, count, send: socket.send };
+  return users;
 };

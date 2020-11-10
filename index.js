@@ -10,53 +10,39 @@ import ThreeBackground from "./src/components/ThreeBackground.js";
 import ThreeLights from "./src/components/ThreeLights.js";
 import Settings from "./src/components/Settings.js";
 
-import {
-  settings,
-  rectPoints,
-  useLocalstorage,
-  randomId,
-  useUsers,
-  random,
-  randomint,
-  trunc,
-} from "./src/lib/index.js";
+import { settings, rectPoints, useUser, useUsers } from "./src/lib/index.js";
 
 const ThreeUsers = {
   components: { ThreeGeometry },
   setup() {
     const sceneContext = inject("sceneContext");
-    const userColor = `#${((Math.random() * 0xffffff) << 0)
-      .toString(16)
-      .padStart(6, "0")}`;
-    const user = useLocalstorage("elektron_user", {
-      userId: "123",
-      userName: "kika",
-      userColor,
-      userX: trunc(random(0, 1), 1),
-      userY: trunc(random(1, 2), 1),
-      userZ: trunc(random(4, 5), 1),
-      userRotation: [random(-10, 10), random(-10, 10), random(-10, 10)],
-    });
+
+    const user = useUser();
+
     settings.userColor = user.value.userColor;
     settings.userX = user.value.userX;
     settings.userY = user.value.userY;
     settings.userZ = user.value.userZ;
-    const { users } = useUsers("foyer2", user);
+
+    const users = useUsers("foyer2", user);
+
     watch(
       () => users.value,
       () => sceneContext.update()
     );
+
     return { users };
   },
   template: `
     <three-geometry 
       v-for="user in users"
-      :position="[user.userX,user.userY,user.userZ]"
+      :position="[user.userX,[user.userY - 1],user.userZ]"
       :rotation="user.userRotation"
       :color="user.userColor"
       lineColor="white"
       :width="0.5"
       :depth="0.5"
+      :height="1.5"
     />
     <pre
       style="
