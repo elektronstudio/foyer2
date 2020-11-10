@@ -1,6 +1,10 @@
+* {
+  transition: all 200ms linear;
+}
 body {
   margin: 0;
   font-family: sans-serif;
+  background: black;
 }
 canvas {
   display: block;
@@ -31,10 +35,10 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: 2px solid white;
-  height: 24px;
-  width: 24px;
+  height: 20px;
+  width: 20px;
   border-radius: 100%;
-  background: gray;
+  background: #333;
   cursor: pointer;
 }
 

@@ -16,8 +16,9 @@ import {
   transformProps,
   materialProps,
   watchTransform,
-  watchMaterial,
-} from "../utils/index.js";
+  watchColor,
+  watchLinecolor,
+} from "../lib/index.js";
 
 export default {
   props: {
@@ -61,24 +62,24 @@ export default {
     );
 
     const fillObject = new Mesh(geometry, fillMaterial.value);
+    watchColor(props, fillObject, sceneContext.update);
 
     group.add(fillObject);
 
     if (props.lineColor) {
       const edges = new EdgesGeometry(geometry);
-      const strokeMaterial = new LineBasicMaterial({
+      const lineMaterial = new LineBasicMaterial({
         color: props.lineColor,
         opacity: props.lineOpacity,
         side: DoubleSide,
       });
-      const strokeObject = new LineSegments(edges, strokeMaterial);
-      group.add(strokeObject);
+      const lineObject = new LineSegments(edges, lineMaterial);
+      group.add(lineObject);
+      watchLinecolor(props, lineObject);
     }
 
     sceneContext.scene.add(group);
-
     watchTransform(props, group);
-    watchMaterial(props, group);
 
     return () => null;
   },

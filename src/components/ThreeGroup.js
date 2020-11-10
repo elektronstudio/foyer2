@@ -1,7 +1,7 @@
 import { inject, watch, provide } from "../deps/vue.js";
 import { Group } from "../deps/three.js";
 
-import { transformProps, watchTransform } from "../utils/index.js";
+import { transformProps, watchTransform } from "../lib/index.js";
 
 export default {
   props: { ...transformProps },
