@@ -47,7 +47,12 @@ export const useUsers = (channel) => {
   // Experimental
 
   watch(
-    [() => settings.materialColor],
+    [
+      () => settings.materialColor,
+      () => settings.lineColor,
+      () => settings.lightColor,
+      () => settings.panelOffset,
+    ],
     throttle(
       () =>
         socket.send(
@@ -55,6 +60,9 @@ export const useUsers = (channel) => {
             type: "SCENE_UPDATE",
             value: {
               materialColor: settings.materialColor,
+              lineColor: settings.lineColor,
+              lightColor: settings.lightColor,
+              panelOffset: settings.panelOffset,
             },
           })
         ),
@@ -72,6 +80,9 @@ export const useUsers = (channel) => {
 
     if (message && message.type === "SCENE_UPDATE" && message.value) {
       settings.materialColor = message.value.materialColor;
+      settings.lineColor = message.value.lineColor;
+      settings.lightColor = message.value.lightColor;
+      settings.panelOffset = message.value.panelOffset;
     }
   });
 
