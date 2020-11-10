@@ -73,6 +73,7 @@ export const useUsers = (channel) => {
 
   socket.addEventListener("message", ({ data }) => {
     const message = JSON.parse(data);
+
     if (message && message.type === "USERS_UPDATE" && message.value) {
       users.value = message.value;
     }

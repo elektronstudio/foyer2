@@ -18,7 +18,12 @@ export default {
       () => sceneContext.update()
     );
 
-    const formatUsername = (str) => str.slice(0, 3);
+    const formatUsername = (str) =>
+      str
+        .split(" ")
+        .map((word) => chunk(word, 5))
+        .flat()
+        .join("\n");
     return { users, formatUsername };
   },
   template: `
@@ -30,17 +35,18 @@ export default {
       <three-geometry
         :color="user.userColor"
         lineColor="white"
-        :width="1"
-        :depth="0.1"
-        :height="1.5"
+        :width="0.4"
+        :depth="0.4"
+        :height="2"
       />
       <three-text
-        :text="formatUsername(user.userName)"
+        :text="user.userName"
         anchorX="left"
-        anchorY="top"
+        anchorY="middle"
         fontSize="0.2"
         color="#ddd"
-        :position="[-0.3,0.6,0.1]"
+        :position="[0,-0.8,0.25]"
+        :rotation="[0,0,90]"
       />
     </three-group>
     <div
