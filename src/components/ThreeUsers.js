@@ -1,4 +1,6 @@
-import { useUser, useUsers } from "./src/lib/index.js";
+import { inject, watch } from "../deps/vue.js";
+
+import { useUser, useUsers } from "../lib/index.js";
 
 import ThreeGeometry from "./ThreeGeometry.js";
 
