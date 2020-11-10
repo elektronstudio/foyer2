@@ -1,10 +1,13 @@
+import getRelativeLuminance from "https://cdn.skypack.dev/get-relative-luminance";
 import { inject, watch } from "../deps/vue.js";
 
-import { useUsers, chunk } from "../lib/index.js";
+import { useUsers } from "../lib/index.js";
 
 import ThreeGeometry from "./ThreeGeometry.js";
 import ThreeGroup from "./ThreeGroup.js";
 import ThreeText from "./ThreeText.js";
+
+const isLight = (color) => getRelativeLuminance(color) > 0.2;
 
 export default {
   components: { ThreeGeometry, ThreeGroup, ThreeText },
@@ -18,13 +21,7 @@ export default {
       () => sceneContext.update()
     );
 
-    const formatUsername = (str) =>
-      str
-        .split(" ")
-        .map((word) => chunk(word, 5))
-        .flat()
-        .join("\n");
-    return { users, formatUsername };
+    return { users, isLight };
   },
   template: `
     <three-group
@@ -43,9 +40,9 @@ export default {
         :text="user.userName"
         anchorX="left"
         anchorY="middle"
-        fontSize="0.2"
-        color="#ddd"
-        :position="[0,-0.8,0.25]"
+        fontSize="0.18"
+        :color="isLight(user.userColor) ? '#444' : '#ddd'"
+        :position="[0,-0.8,0.22]"
         :rotation="[0,0,90]"
       />
     </three-group>
