@@ -31,7 +31,6 @@ export const useUser = () => {
     userRotationZ: 0,
   });
 
-  settings.userName = user.value.userName;
   settings.userColor = user.value.userColor;
   settings.userX = user.value.userX;
   settings.userY = user.value.userY;
@@ -40,21 +39,21 @@ export const useUser = () => {
   settings.userRotationY = user.value.userRotationY;
   settings.userRotationZ = user.value.userRotationZ;
 
-  watch(
-    () => settings.userName,
-    () => {
-      socket.send(
-        createMessage({
-          type: "USER_UPDATE",
-          userId: user.value.userId,
-          userName: user.value.userName,
-          value: {
-            userName: user.value.userName,
-          },
-        })
-      );
-    }
-  );
+  // watch(
+  //   () => settings.userName,
+  //   () => {
+  //     socket.send(
+  //       createMessage({
+  //         type: "USER_UPDATE",
+  //         userId: user.value.userId,
+  //         userName: user.value.userName,
+  //         value: {
+  //           userName: user.value.userName,
+  //         },
+  //       })
+  //     );
+  //   }
+  // );
 
   return user;
 };

@@ -48,6 +48,7 @@ export default {
     </three-group>
     <div
       style="
+        display: none;
         position: fixed;
         top: 0;
         left: 0;
@@ -57,7 +58,7 @@ export default {
         pointer-events: none;
       "
     >
-      <pre>{{ JSON.stringify({},null,1) }}</pre>
+      <pre>{{ JSON.stringify(users,null,1) }}</pre>
     </div>
   `,
 };

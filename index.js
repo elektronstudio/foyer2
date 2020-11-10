@@ -61,7 +61,7 @@ const App = {
       </three-panels>
       <three-text
         :position="[-1, 1.5, -1]"
-        text="Live"
+        text="elektron"
         anchorX="center"
         anchorY="middle"
         fontSize="1.25"
@@ -69,7 +69,7 @@ const App = {
       />
     </three-group>
     <three-users />
-    <debug />
+    <!-- <debug /> -->
     <settings />
   </three-scene>
 `,

@@ -2,10 +2,10 @@ import { reactive } from "../deps/vue.js";
 
 export const initialSettings = [
   {
-    key: "userName",
-    title: "Username",
-    type: "text",
-    value: "",
+    key: "userColor",
+    title: "User color",
+    type: "color",
+    value: "#ddaaff",
   },
   {
     key: "userX",
@@ -60,12 +60,6 @@ export const initialSettings = [
     min: -45,
     max: 45,
     step: 0.01,
-  },
-  {
-    key: "userColor",
-    title: "User color",
-    type: "color",
-    value: "#ddaaff",
   },
   {
     key: "materialColor",
