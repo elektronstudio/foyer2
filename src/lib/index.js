@@ -1,4 +1,4 @@
-export * from "./config.js";
+export * from "../../config.js";
 export * from "./hooks.js";
 export * from "./misc.js";
 export * from "./settings.js";
