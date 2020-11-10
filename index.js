@@ -25,14 +25,12 @@ const ThreeUsers = {
   components: { ThreeGeometry },
   setup() {
     const sceneContext = inject("sceneContext");
-    const userId = randomId();
-    // const userColor = `#${((Math.random() * 0xffffff) << 0)
-    //   .toString(16)
-    //   .padStart(6, "0")}`;
-    const userColor = "#ffffff";
+    const userColor = `#${((Math.random() * 0xffffff) << 0)
+      .toString(16)
+      .padStart(6, "0")}`;
     const user = useLocalstorage("elektron_user", {
-      userId,
-      userName: userId,
+      userId: "123",
+      userName: "kika",
       userColor,
       userX: trunc(random(0, 1), 1),
       userY: trunc(random(1, 2), 1),
@@ -60,6 +58,16 @@ const ThreeUsers = {
       :width="0.5"
       :depth="0.5"
     />
+    <pre
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        color: white;
+      "
+    >
+ {{ JSON.stringify(users,null,1) }}
+    </pre>
   `,
 };
 
@@ -118,7 +126,6 @@ const App = {
     <three-users />
   </three-scene>
   <settings />
-  <!-- <div style="position: fixed; top: 0; left: 0; color: white">{{ settings.panelOffset }}</div> -->
 `,
 };
 
