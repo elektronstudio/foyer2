@@ -61,36 +61,16 @@ export const useUsers = (channel, user) => {
             },
           })
         ),
-      200
+      500
     )
   );
 
   socket.addEventListener("message", ({ data }) => {
     const message = JSON.parse(data);
-    if (
-      message &&
-      message.type === "CHANNEL_INFO" &&
-      message.value &&
-      message.value[channel] &&
-      message.value[channel].users
-    ) {
-      users.value = message.value[channel].users;
+    if (message && message.type === "USERS_UPDATE" && message.value) {
+      users.value = message.value;
     }
   });
-
-  // socket.addEventListener("message", ({ data }) => {
-  //   const message = JSON.parse(data);
-  //   if (
-  //     message &&
-  //     message.userId &&
-  //     message.type === "USER_UPDATE" &&
-  //     message.value
-  //   ) {
-  //     const i = users.value.findIndex((user) => user.userId === message.userId);
-  //     users.value[i] = { ...users.value[i], ...message.value };
-  //     console.log(users.value);
-  //   }
-  // });
 
   const joinChannel = () => {
     const outgoingMessage = createMessage({
@@ -102,17 +82,6 @@ export const useUsers = (channel, user) => {
     });
     socket.send(outgoingMessage);
   };
-
-  // const userUpdate = () => {
-  //   const outgoingMessage = createMessage({
-  //     type: "USER_UPDATE",
-  //     channel: channel,
-  //     userId: user.value.userId,
-  //     userName: user.value.userName,
-  //     value: user.value,
-  //   });
-  //   socket.send(outgoingMessage);
-  // };
 
   const leaveChannel = () => {
     const outgoingMessage = createMessage({
@@ -126,7 +95,6 @@ export const useUsers = (channel, user) => {
 
   onMounted(() => {
     joinChannel();
-    //userUpdate();
     window.addEventListener("beforeunload", leaveChannel);
   });
 
