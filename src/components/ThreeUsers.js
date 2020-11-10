@@ -1,6 +1,6 @@
 import { inject, watch } from "../deps/vue.js";
 
-import { useUser, useUsers } from "../lib/index.js";
+import { useUsers } from "../lib/index.js";
 
 import ThreeGeometry from "./ThreeGeometry.js";
 
@@ -9,9 +9,7 @@ export default {
   setup() {
     const sceneContext = inject("sceneContext");
 
-    const user = useUser();
-
-    const users = useUsers("foyer2", user);
+    const users = useUsers("foyer2");
 
     watch(
       () => users.value,

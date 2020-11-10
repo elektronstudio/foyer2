@@ -5,10 +5,12 @@ import {
   settings,
   throttle,
   websocketThrottle,
+  useUser,
 } from "./index.js";
 
-export const useUsers = (channel, user) => {
+export const useUsers = (channel) => {
   const users = ref([]);
+  const user = useUser();
   watch(
     [
       () => settings.userColor,
