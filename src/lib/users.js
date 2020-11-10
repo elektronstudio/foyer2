@@ -26,8 +26,8 @@ export const useUsers = (channel) => {
         socket.send(
           createMessage({
             type: "USER_UPDATE",
-            userId: "123",
-            userName: "kika",
+            userId: user.userId,
+            userName: user.userName,
             value: {
               userColor: settings.userColor,
               userX: settings.userX,

@@ -5,3 +5,4 @@ export * from "./misc.js";
 export * from "./settings.js";
 export * from "./three.js";
 export * from "./websocket.js";
+export * from "./data.js";

@@ -9,6 +9,8 @@ export const scale = (value, start1, stop1, start2, stop2) => {
   return ((value - start1) / (stop1 - start1)) * (stop2 - start2) + start2;
 };
 
+export const any = (arr) => shuffle(arr)[0];
+
 export const random = (from = 0, to = 1) => from + Math.random() * (to - from);
 
 export const randomint = (from = 0, to = 1) => Math.floor(random(from, to));

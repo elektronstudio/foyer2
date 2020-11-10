@@ -2,6 +2,12 @@ import { reactive } from "../deps/vue.js";
 
 export const initialSettings = [
   {
+    key: "userName",
+    title: "Username",
+    type: "text",
+    value: "",
+  },
+  {
     key: "userX",
     title: "User X coordinate",
     type: "range",
