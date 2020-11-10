@@ -31,6 +31,8 @@ export default {
     />
     <pre
       style="
+        display: none;
+        pointer-events: none;
         position: fixed;
         bottom: 0;
         left: 0;
