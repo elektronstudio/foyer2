@@ -44,10 +44,34 @@ export const useUsers = (channel) => {
     { immediate: true }
   );
 
+  // Experimental
+
+  watch(
+    [() => settings.materialColor],
+    throttle(
+      () =>
+        socket.send(
+          createMessage({
+            type: "SCENE_UPDATE",
+            value: {
+              materialColor: settings.materialColor,
+            },
+          })
+        ),
+      websocketThrottle
+    ),
+    { immediate: true }
+  );
+
   socket.addEventListener("message", ({ data }) => {
     const message = JSON.parse(data);
     if (message && message.type === "USERS_UPDATE" && message.value) {
       users.value = message.value;
+    }
+    // Experimental
+
+    if (message && message.type === "SCENE_UPDATE" && message.value) {
+      settings.materialColor = message.value.materialColor;
     }
   });
 
