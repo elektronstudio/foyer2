@@ -16,10 +16,9 @@ export default {
 
     const { channels, users } = useChannel();
     watch(
-      () => users.value,
+      () => channels.value,
       () => {
         sceneContext.update();
-        console.log("update");
       }
     );
 
