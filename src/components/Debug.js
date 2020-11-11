@@ -1,13 +1,13 @@
 import { inject } from "../deps/vue.js";
 
-import { socket, createMessage, useUsers } from "../lib/index.js";
+import { socket, createMessage } from "../lib/index.js";
 
 export default {
   setup() {
     const sceneContext = inject("sceneContext");
     socket.addEventListener("message", ({ data }) => {
       const message = JSON.parse(data);
-      if (message && message.type === "CHAT" && message.value === "/reset") {
+      if (message && message.type === "RESET") {
         window.localStorage.clear();
         window.location.reload();
         sceneContext.update();
@@ -17,9 +17,7 @@ export default {
     const onReset = () => {
       socket.send(
         createMessage({
-          type: "CHAT",
-          channel: "foyer2",
-          value: "/reset",
+          type: "RESET",
         })
       );
     };

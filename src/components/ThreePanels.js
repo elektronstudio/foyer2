@@ -19,7 +19,7 @@ const points = [
 
 import { transformProps, pointsTransforms, rectPoints } from "../lib/index.js";
 
-import { settings } from "../lib/index.js";
+import { useSettings } from "../lib/index.js";
 
 export default {
   components: { ThreeGeometry, ThreeGroup, ThreeLine },
@@ -31,6 +31,7 @@ export default {
   },
   setup(props) {
     const panels = pointsTransforms(points);
+    const settings = useSettings();
     return { panels, settings, rectPoints };
   },
   template: `

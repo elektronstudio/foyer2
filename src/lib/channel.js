@@ -1,18 +1,12 @@
-import {
-  ref,
-  reactive,
-  onMounted,
-  onUnmounted,
-  watch,
-  computed,
-} from "../deps/vue.js";
-import { socket, createMessage, safeJsonParse } from "./index.js";
+import { ref, onMounted, onUnmounted, computed } from "../deps/vue.js";
+import { socket, createMessage } from "./index.js";
+import { channel } from "../../config.js";
 
-export const useChannel = (channel) => {
+export const useChannel = () => {
   const channels = ref({});
 
   socket.addEventListener("message", ({ data }) => {
-    const message = safeJsonParse(data);
+    const message = JSON.parse(data);
     if (message && message.type === "CHANNELS_UPDATED" && message.value) {
       channels.value = message.value;
     }
@@ -53,5 +47,11 @@ export const useChannel = (channel) => {
     )
   );
 
-  return { channels, count };
+  const users = computed(() =>
+    channels.value[channel] && channels.value[channel].users
+      ? channels.value[channel].users
+      : {}
+  );
+
+  return { channels, users, count };
 };

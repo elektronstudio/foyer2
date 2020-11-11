@@ -1,7 +1,7 @@
 import getRelativeLuminance from "https://cdn.skypack.dev/get-relative-luminance";
 import { inject, watch } from "../deps/vue.js";
 
-import { useUsers } from "../lib/index.js";
+import { useChannel } from "../lib/index.js";
 
 import ThreeGeometry from "./ThreeGeometry.js";
 import ThreeGroup from "./ThreeGroup.js";
@@ -14,10 +14,9 @@ export default {
   setup() {
     const sceneContext = inject("sceneContext");
 
-    const users = useUsers("foyer2");
-
+    const { users } = useChannel();
     watch(
-      () => users.value,
+      () => users,
       () => sceneContext.update()
     );
 
@@ -41,14 +40,14 @@ export default {
         anchorX="left"
         anchorY="middle"
         fontSize="0.18"
-        :color="isLight(user.userColor) ? '#444' : '#ddd'"
+        :color="isLight(user.userColor || 'white') ? '#444' : '#ddd'"
         :position="[0,-0.8,0.22]"
         :rotation="[0,0,90]"
       />
     </three-group>
     <div
       style="
-        display: none;
+        display: block;
         position: fixed;
         top: 0;
         left: 0;

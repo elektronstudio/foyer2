@@ -1,7 +1,8 @@
-import { initialSettings, settings } from "../lib/index.js";
+import { initialSettings, useSettings } from "../lib/index.js";
 
 export default {
   setup() {
+    const settings = useSettings();
     return { initialSettings, settings };
   },
   template: `

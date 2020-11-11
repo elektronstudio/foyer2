@@ -12,7 +12,7 @@ import ThreeUsers from "./src/components/ThreeUsers.js";
 import Settings from "./src/components/Settings.js";
 import Debug from "./src/components/Debug.js";
 
-import { settings, rectPoints, useUser, useUsers } from "./src/lib/index.js";
+import { rectPoints, useSettings } from "./src/lib/index.js";
 
 const App = {
   components: {
@@ -31,6 +31,7 @@ const App = {
     ThreeVideoHsl,
   },
   setup() {
+    const settings = useSettings();
     return { settings, rectPoints };
   },
   template: `

@@ -1,22 +1,20 @@
 import { ReconnectingWebsocket } from "../deps/reconnecting-websocket.js";
 
-import { chatUrl } from "./index.js";
+import { chatUrl, useUser, randomId } from "./index.js";
 
 export const socket = new ReconnectingWebsocket(chatUrl);
 
+// Create message
+
 export const createMessage = (message) => {
-  const id = "abcdefghijklmnopqrstuvwxyz"
-    .split("")
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 16)
-    .join("");
+  const { userId, userName } = useUser();
   return JSON.stringify({
-    id,
+    id: randomId(),
     datetime: new Date().toISOString(),
+    userId: userId.value,
+    userName: userName.value,
     type: "",
     channel: "",
-    userId: "",
-    userName: "",
     value: "",
     ...message,
   });

@@ -1,4 +1,7 @@
-import { reactive } from "../deps/vue.js";
+import { reactive, watch } from "../deps/vue.js";
+
+import { throttle, socket, createMessage } from "./index.js";
+import { channel, throttleTimeout } from "../../config.js";
 
 export const initialSettings = [
   {
@@ -6,6 +9,7 @@ export const initialSettings = [
     title: "User color",
     type: "color",
     value: "#ddaaff",
+    user: true,
   },
   {
     key: "userX",
@@ -165,6 +169,31 @@ export const initialSettings = [
   // },
 ];
 
-export const settings = reactive(
-  Object.fromEntries(initialSettings.map(({ key, value }) => [key, value]))
-);
+export const useSettings = () => {
+  const settings = reactive(
+    Object.fromEntries(initialSettings.map(({ key, value }) => [key, value]))
+  );
+
+  const broadcastSettings = () => {
+    const outgoingMessage = createMessage({
+      type: "CHANNEL_USER_UPDATE",
+      channel,
+      value: Object.fromEntries(
+        initialSettings
+          .filter(({ user }) => user)
+          .map(({ key, value }) => [key, value])
+      ),
+    });
+    socket.send(outgoingMessage);
+  };
+
+  const keys = initialSettings.map(({ key }) => key);
+  watch(
+    keys.map((key) => {
+      return () => settings.userColor;
+    }),
+    throttle(broadcastSettings, throttleTimeout),
+    { immediate: true }
+  );
+  return settings;
+};
