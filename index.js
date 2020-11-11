@@ -69,7 +69,7 @@ const App = {
       />
     </three-group>
     <three-users />
-    <!-- <debug /> -->
+    <debug />
     <settings />
   </three-scene>
 `,
