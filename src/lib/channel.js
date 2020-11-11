@@ -49,7 +49,10 @@ export const useChannel = () => {
 
   const users = computed(() =>
     channels.value[channel] && channels.value[channel].users
-      ? channels.value[channel].users
+      ? Object.entries(channels.value[channel].users).map(([userId, user]) => ({
+          ...user,
+          userId,
+        }))
       : {}
   );
 

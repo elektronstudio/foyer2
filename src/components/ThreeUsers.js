@@ -60,7 +60,7 @@ export default {
         pointer-events: none;
       "
     >
-      <pre>{{ JSON.stringify(channels,null,1) }}</pre>
+      <pre>{{ JSON.stringify(users,null,1) }}</pre>
     </div>
   `,
 };
