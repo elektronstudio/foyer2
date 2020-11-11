@@ -17,14 +17,17 @@ export default {
     const { channels, users } = useChannel();
     watch(
       () => users.value,
-      () => sceneContext.update()
+      () => {
+        sceneContext.update();
+        console.log("update");
+      }
     );
 
     return { users, channels, isLight };
   },
   template: `
     <three-group
-      v-for="user in users"
+      v-for="(user,i) in users"
       :position="[user.userX,user.userY,user.userZ]"
       :rotation="[user.userRotationX,user.userRotationY,user.userRotationZ]"
     >
@@ -40,7 +43,7 @@ export default {
         anchorX="left"
         anchorY="middle"
         fontSize="0.18"
-        :color="isLight(user.userColor || 'white') ? '#444' : '#ddd'"
+        :color="isLight(user.userColor || 'black') ? '#444' : '#ddd'"
         :position="[0,-0.8,0.22]"
         :rotation="[0,0,90]"
       />

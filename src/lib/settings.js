@@ -13,13 +13,6 @@ import { channel, throttleTimeout } from "../../config.js";
 export const initialSettings = [
   {
     user: true,
-    key: "userName",
-    title: "User name",
-    type: "text",
-    value: "",
-  },
-  {
-    user: true,
     key: "userColor",
     title: "User color",
     type: "color",
