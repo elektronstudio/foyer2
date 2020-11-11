@@ -1,6 +1,13 @@
 import { reactive, watch } from "../deps/vue.js";
 
-import { throttle, socket, createMessage, random } from "./index.js";
+import {
+  throttle,
+  socket,
+  createMessage,
+  random,
+  trunc,
+  randomHexColor,
+} from "./index.js";
 import { channel, throttleTimeout } from "../../config.js";
 
 export const initialSettings = [
@@ -16,16 +23,16 @@ export const initialSettings = [
     key: "userColor",
     title: "User color",
     type: "color",
-    value: "#ddaaff",
+    value: randomHexColor(),
   },
   {
     user: true,
     key: "userX",
     title: "User X coordinate",
     type: "range",
-    value: random(-4, 5),
-    min: -5,
-    max: 5,
+    value: trunc(random(-2, 2), 1),
+    min: -2,
+    max: 2,
     step: 0.01,
   },
   {
@@ -33,9 +40,9 @@ export const initialSettings = [
     key: "userY",
     title: "User Y coordinate",
     type: "range",
-    value: 0,
+    value: trunc(random(1, 3), 1),
     min: 1,
-    max: 5,
+    max: 3,
     step: 0.01,
   },
   {
@@ -43,9 +50,9 @@ export const initialSettings = [
     key: "userZ",
     title: "User Z coordinate",
     type: "range",
-    value: 0,
-    min: 5,
-    max: 10,
+    value: trunc(random(4, 6), 1),
+    min: 4,
+    max: 6,
     step: 0.01,
   },
   {
