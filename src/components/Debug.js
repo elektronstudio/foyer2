@@ -30,7 +30,6 @@ export default {
       bottom: 0;
       left: 0;
       padding: 15px;
-      transform: scale(0.5);
       opacity: 0.5;
     "
   >

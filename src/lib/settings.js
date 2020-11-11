@@ -5,13 +5,14 @@ import { channel, throttleTimeout } from "../../config.js";
 
 export const initialSettings = [
   {
+    user: true,
     key: "userColor",
     title: "User color",
     type: "color",
     value: "#ddaaff",
-    user: true,
   },
   {
+    user: true,
     key: "userX",
     title: "User X coordinate",
     type: "range",
@@ -21,6 +22,7 @@ export const initialSettings = [
     step: 0.01,
   },
   {
+    user: true,
     key: "userY",
     title: "User Y coordinate",
     type: "range",
@@ -30,6 +32,7 @@ export const initialSettings = [
     step: 0.01,
   },
   {
+    user: true,
     key: "userZ",
     title: "User Z coordinate",
     type: "range",
@@ -39,6 +42,7 @@ export const initialSettings = [
     step: 0.01,
   },
   {
+    user: true,
     key: "userRotationX",
     title: "User X rotation",
     type: "range",
@@ -48,6 +52,7 @@ export const initialSettings = [
     step: 0.01,
   },
   {
+    user: true,
     key: "userRotationY",
     title: "User Y rotation",
     type: "range",
@@ -57,6 +62,7 @@ export const initialSettings = [
     step: 0.01,
   },
   {
+    user: true,
     key: "userRotationZ",
     title: "User Z rotation",
     type: "range",
@@ -181,16 +187,17 @@ export const useSettings = () => {
       value: Object.fromEntries(
         initialSettings
           .filter(({ user }) => user)
-          .map(({ key, value }) => [key, value])
+          .map(({ key, value }) => [key, settings[key]])
       ),
     });
+    console.log(outgoingMessage);
     socket.send(outgoingMessage);
   };
 
-  const keys = initialSettings.map(({ key }) => key);
+  const keys = initialSettings.filter(({ user }) => user).map(({ key }) => key);
   watch(
     keys.map((key) => {
-      return () => settings.userColor;
+      return () => settings[key];
     }),
     throttle(broadcastSettings, throttleTimeout),
     { immediate: true }

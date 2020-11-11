@@ -14,13 +14,13 @@ export default {
   setup() {
     const sceneContext = inject("sceneContext");
 
-    const { users } = useChannel();
+    const { channels, users } = useChannel();
     watch(
-      () => users,
+      () => users.value,
       () => sceneContext.update()
     );
 
-    return { users, isLight };
+    return { users, channels, isLight };
   },
   template: `
     <three-group
@@ -57,7 +57,7 @@ export default {
         pointer-events: none;
       "
     >
-      <pre>{{ JSON.stringify(users,null,1) }}</pre>
+      <pre>{{ JSON.stringify(channels,null,1) }}</pre>
     </div>
   `,
 };
