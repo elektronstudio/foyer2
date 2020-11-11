@@ -38,7 +38,7 @@ export default {
         :height="2"
       />
       <three-text
-        :text="user.userName"
+        :text="user.userColor"
         anchorX="left"
         anchorY="middle"
         fontSize="0.18"
