@@ -6,7 +6,7 @@ export default {
   props: {
     ...transformProps,
     color: { default: "white" },
-    text: { default: "Hello" },
+    text: { default: "" },
     fontSize: { default: 1 },
     anchorX: { default: "left" },
     anchorY: { default: "top" },

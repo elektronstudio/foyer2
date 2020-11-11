@@ -1,9 +1,16 @@
 import { reactive, watch } from "../deps/vue.js";
 
-import { throttle, socket, createMessage } from "./index.js";
+import { throttle, socket, createMessage, random } from "./index.js";
 import { channel, throttleTimeout } from "../../config.js";
 
 export const initialSettings = [
+  {
+    user: true,
+    key: "userName",
+    title: "User name",
+    type: "text",
+    value: "",
+  },
   {
     user: true,
     key: "userColor",
@@ -16,7 +23,7 @@ export const initialSettings = [
     key: "userX",
     title: "User X coordinate",
     type: "range",
-    value: 0,
+    value: random(-4, 5),
     min: -5,
     max: 5,
     step: 0.01,
@@ -27,7 +34,7 @@ export const initialSettings = [
     title: "User Y coordinate",
     type: "range",
     value: 0,
-    min: 0,
+    min: 1,
     max: 5,
     step: 0.01,
   },
@@ -190,7 +197,6 @@ export const useSettings = () => {
           .map(({ key, value }) => [key, settings[key]])
       ),
     });
-    console.log(outgoingMessage);
     socket.send(outgoingMessage);
   };
 
