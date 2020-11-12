@@ -1,5 +1,5 @@
-import getRelativeLuminance from "https://cdn.skypack.dev/get-relative-luminance";
 import { inject, watch } from "../deps/vue.js";
+import { getRelativeLuminance } from "../deps/get-relative-luminance.js";
 
 import { useChannel } from "../lib/index.js";
 
@@ -14,15 +14,15 @@ export default {
   setup() {
     const sceneContext = inject("sceneContext");
 
-    const { channels, users } = useChannel();
+    const { users } = useChannel();
     watch(
-      () => channels.value,
+      () => users.value,
       () => {
         sceneContext.update();
       }
     );
 
-    return { users, channels, isLight };
+    return { users, isLight };
   },
   template: `
     <three-group
@@ -47,19 +47,5 @@ export default {
         :rotation="[0,0,90]"
       /-->
     </three-group>
-    <div
-      style="
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        color: white;
-        opacity: 0.5;
-        overflow: scroll;
-        pointer-events: none;
-      "
-    >
-      <pre>{{ JSON.stringify(users,null,1) }}</pre>
-    </div>
   `,
 };

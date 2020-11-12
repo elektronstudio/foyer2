@@ -23,8 +23,10 @@ export default {
       gap: 8px;
     "
   >
+    <!--
     <div>Username</div>
     <input type="text" v-model="userName" />
+    -->
     <template v-for="(value, key, i) in settings">
       <div>{{ initialSettings[i].title }}: {{ settings[key] }}</div>
       <textarea
