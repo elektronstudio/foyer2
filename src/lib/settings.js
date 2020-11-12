@@ -8,6 +8,7 @@ import {
   trunc,
   randomHexColor,
 } from "./index.js";
+
 import { channel, throttleTimeout } from "../../config.js";
 
 export const initialSettings = [
@@ -182,11 +183,11 @@ export const initialSettings = [
   // },
 ];
 
-export const useSettings = () => {
-  const settings = reactive(
-    Object.fromEntries(initialSettings.map(({ key, value }) => [key, value]))
-  );
+export const settings = reactive(
+  Object.fromEntries(initialSettings.map(({ key, value }) => [key, value]))
+);
 
+export const useSettings = () => {
   const broadcastSettings = () => {
     const outgoingMessage = createMessage({
       type: "CHANNEL_USER_UPDATE",

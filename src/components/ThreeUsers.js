@@ -36,6 +36,7 @@ export default {
         :width="0.4"
         :depth="0.4"
         :height="2"
+        :castShadow="true"
       />
       <!--three-text
         :text="user.userName"

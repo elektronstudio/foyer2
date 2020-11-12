@@ -39,6 +39,12 @@ export default {
     texture: {
       default: null,
     },
+    castShadow: {
+      default: false,
+    },
+    receiveShadow: {
+      default: false,
+    },
   },
   setup(props) {
     const sceneContext = inject("sceneContext");
@@ -62,6 +68,10 @@ export default {
     );
 
     const fillObject = new Mesh(geometry, fillMaterial.value);
+
+    fillObject.castShadow = props.castShadow;
+    fillObject.receiveShadow = props.receiveShadow;
+
     watchColor(props, fillObject, sceneContext.update);
 
     group.add(fillObject);

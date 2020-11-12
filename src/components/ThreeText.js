@@ -12,11 +12,20 @@ export default {
     anchorY: { default: "top" },
     letterSpacing: { default: 0 },
     font: { default: "../../public/font-bold.woff" },
+    castShadow: {
+      default: false,
+    },
+    receiveShadow: {
+      default: false,
+    },
   },
   setup(props) {
     const sceneContext = inject("sceneContext");
 
     const object = new Text();
+    object.castShadow = props.castShadow;
+    object.receiveShadow = props.receiveShadow;
+
     sceneContext.scene.add(object);
 
     watch(

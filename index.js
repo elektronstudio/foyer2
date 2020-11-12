@@ -12,7 +12,7 @@ import ThreeUsers from "./src/components/ThreeUsers.js";
 import Settings from "./src/components/Settings.js";
 import Debug from "./src/components/Debug.js";
 
-import { rectPoints, useSettings } from "./src/lib/index.js";
+import { rectPoints, settings } from "./src/lib/index.js";
 
 const App = {
   components: {
@@ -31,12 +31,10 @@ const App = {
     ThreeVideoHsl,
   },
   setup() {
-    const settings = useSettings();
     return { settings, rectPoints };
   },
   template: `
   <three-scene>
-    <three-background :color="settings.materialColor"/>
     <three-lights :color="settings.lightColor" />
     <three-geometry
       :rotation="[-90,0,0]"
@@ -45,6 +43,7 @@ const App = {
       height="50"
       :color="settings.materialColor"
       :lineColor="settings.lineColor"
+      :receiveShadow="true"
     />
     <three-group :position="[0,settings.panelOffset,0]">
       <three-panels v-slot="{ panel }">
@@ -54,6 +53,7 @@ const App = {
           depth="0.05"
           :color="settings.materialColor"
           :lineColor="settings.lineColor"
+          :receiveShadow="true"
         />
         <three-line
           :points="rectPoints(panel.width, 1)"

@@ -1,6 +1,11 @@
 import { inject, watch } from "../deps/vue.js";
 
-import { AmbientLight, PointLight, Color } from "../deps/three.js";
+import {
+  AmbientLight,
+  PointLight,
+  Color,
+  CameraHelper,
+} from "../deps/three.js";
 
 export default {
   props: {
@@ -12,20 +17,19 @@ export default {
     const ambientLight = new AmbientLight();
     sceneContext.scene.add(ambientLight);
 
-    const directionalLightOne = new PointLight(props.color);
-    directionalLightOne.position.set(-40, 140, 40);
-    sceneContext.scene.add(directionalLightOne);
+    const directionalLight = new PointLight(props.color);
+    directionalLight.position.set(0, 100, 40);
+    directionalLight.castShadow = true;
+    sceneContext.scene.add(directionalLight);
 
-    const directionalLightTwo = new PointLight(props.color);
-    directionalLightTwo.position.set(40, 140, 40);
-    sceneContext.scene.add(directionalLightTwo);
+    // const helper = new CameraHelper(directionalLight.shadow.camera);
+    // sceneContext.scene.add(helper);
 
     watch(
       () => props.color,
       (color) => {
         console.log(color);
-        directionalLightOne.color = new Color(color);
-        directionalLightTwo.color = new Color(color);
+        directionalLight.color = new Color(color);
       }
     );
     return () => null;
