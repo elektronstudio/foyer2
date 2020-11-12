@@ -17,12 +17,9 @@ const points = [
   [9, -6],
 ];
 
-import {
-  transformProps,
-  pointsTransforms,
-  rectPoints,
-} from "../utils/index.js";
-import { settings } from "../settings/index.js";
+import { transformProps, pointsTransforms, rectPoints } from "../lib/index.js";
+
+import { useSettings } from "../lib/index.js";
 
 export default {
   components: { ThreeGeometry, ThreeGroup, ThreeLine },
@@ -34,6 +31,7 @@ export default {
   },
   setup(props) {
     const panels = pointsTransforms(points);
+    const settings = useSettings();
     return { panels, settings, rectPoints };
   },
   template: `
@@ -52,17 +50,7 @@ export default {
         :position="panel.position"
         :rotation="panel.rotation"
       >
-        <three-geometry
-          geometry="PlaneGeometry"
-          :width="panel.width"
-          depth="0.05"
-          :color="settings.panelColor"
-          :lineColor="settings.lineColor"
-        />
-        <three-line
-          :points="rectPoints(panel.width, 1)"
-          lineWidth="0.03" 
-        />
+        <slot :panel="panel" />
       </three-group>
     </three-group>
   </three-group> 

@@ -31,23 +31,11 @@ export default {
     const height = window.innerHeight;
 
     const scene = new Scene();
-    scene.background = new Color("black");
-
-    const ambientLight = new AmbientLight();
-    scene.add(ambientLight);
-
-    const directionalLightOne = new PointLight("white");
-    directionalLightOne.position.set(-40, 40, 40);
-    scene.add(directionalLightOne);
-
-    const directionalLightTwo = new PointLight("white");
-    directionalLightTwo.position.set(40, 40, 40);
-    scene.add(directionalLightTwo);
 
     const camera = new PerspectiveCamera(75, width / height, 0.1);
 
     camera.position.y = 1;
-    camera.position.z = 10;
+    camera.position.z = 12;
     camera.lookAt(0, 1, 0);
 
     const renderer = new WebGLRenderer({

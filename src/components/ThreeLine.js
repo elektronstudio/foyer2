@@ -13,14 +13,18 @@ import {
   MeshLineRaycast,
 } from "../deps/three.js";
 
-import { transformProps, watchTransform } from "../utils/index.js";
+import {
+  transformProps,
+  watchTransform,
+  watchLinecolor,
+} from "../lib/index.js";
 
 export default {
   props: {
     ...transformProps,
     points: { default: [] },
     lineColor: { default: "white" },
-    lineWidth: { default: 0.01 },
+    lineWidth: { default: 0.03 },
   },
   setup(props) {
     const sceneContext = inject("sceneContext");
@@ -53,6 +57,7 @@ export default {
     sceneContext.scene.add(object);
 
     watchTransform(props, object);
+    watchLinecolor(props, object);
 
     return () => null;
   },

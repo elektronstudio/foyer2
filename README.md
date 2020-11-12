@@ -16,7 +16,7 @@ const vertexShader = `attribute vec3 center; varying vec3 vCenter; void main() {
       gl_FragColor.a = 1.0;
     }
     `;
-    const strokeMaterial = new ShaderMaterial({
+    const lineMaterial = new ShaderMaterial({
       uniforms: {
         lineWidth: {
           value: 10,

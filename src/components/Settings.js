@@ -1,8 +1,10 @@
-import { initialSettings, settings } from "../settings/index.js";
+import { initialSettings, useSettings, useUser } from "../lib/index.js";
 
 export default {
   setup() {
-    return { initialSettings, settings };
+    const settings = useSettings();
+    const { userName } = useUser();
+    return { userName, initialSettings, settings };
   },
   template: `
   <div
@@ -21,6 +23,10 @@ export default {
       gap: 8px;
     "
   >
+    
+    <div>Username</div>
+    <input type="text" v-model="userName" />
+   
     <template v-for="(value, key, i) in settings">
       <div>{{ initialSettings[i].title }}: {{ settings[key] }}</div>
       <textarea
@@ -30,7 +36,8 @@ export default {
       />
       <input
         v-if="!initialSettings[i].textarea"
-        v-model="settings[key]" 
+        :value="settings[key]" 
+        @input="settings[key] = typeof $event.target.value === 'number' ? parseFloat($event.target.value) : $event.target.value"
         :type="initialSettings[i].type"
         :min="initialSettings[i].hasOwnProperty('min') ? initialSettings[i].min : 0"
         :max="initialSettings[i].hasOwnProperty('max') ? initialSettings[i].max : 100"
