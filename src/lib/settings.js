@@ -55,8 +55,8 @@ export const initialSettings = [
     title: "User X rotation",
     type: "range",
     value: 0,
-    min: -45,
-    max: 45,
+    min: -90,
+    max: 90,
     step: 0.01,
   },
   {
@@ -65,8 +65,8 @@ export const initialSettings = [
     title: "User Y rotation",
     type: "range",
     value: 0,
-    min: -45,
-    max: 45,
+    min: -90,
+    max: 90,
     step: 0.01,
   },
   {
@@ -75,8 +75,8 @@ export const initialSettings = [
     title: "User Z rotation",
     type: "range",
     value: 0,
-    min: -45,
-    max: 45,
+    min: -90,
+    max: 90,
     step: 0.01,
   },
   {
