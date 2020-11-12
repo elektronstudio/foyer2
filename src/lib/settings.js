@@ -34,7 +34,7 @@ export const initialSettings = [
     key: "userY",
     title: "User Y coordinate",
     type: "range",
-    value: trunc(random(1, 3), 1),
+    value: 1,
     min: 1,
     max: 3,
     step: 0.01,
@@ -80,6 +80,12 @@ export const initialSettings = [
     step: 0.01,
   },
   {
+    key: "lightColor",
+    title: "Light color",
+    type: "color",
+    value: "#ffffff",
+  },
+  {
     key: "materialColor",
     title: "Material color",
     type: "color",
@@ -88,12 +94,6 @@ export const initialSettings = [
   {
     key: "lineColor",
     title: "Line color",
-    type: "color",
-    value: "#ffff00",
-  },
-  {
-    key: "lightColor",
-    title: "Light color",
     type: "color",
     value: "#ffffff",
   },
