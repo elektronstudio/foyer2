@@ -28,7 +28,6 @@ export default {
     watch(
       () => props.color,
       (color) => {
-        console.log(color);
         directionalLight.color = new Color(color);
       }
     );
