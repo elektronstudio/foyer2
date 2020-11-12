@@ -89,7 +89,7 @@ export const initialSettings = [
     key: "lineColor",
     title: "Line color",
     type: "color",
-    value: "#ffffff",
+    value: "#ffff00",
   },
   {
     key: "lightColor",

@@ -1,10 +1,13 @@
+:root {
+  background: black;
+}
 * {
   transition: all 200ms linear;
 }
 body {
   margin: 0;
   font-family: sans-serif;
-  background: black;
+  background: var(--background);
 }
 canvas {
   display: block;

@@ -1,7 +1,7 @@
 import { inject, watch } from "../deps/vue.js";
 import { getRelativeLuminance } from "../deps/get-relative-luminance.js";
 
-import { useChannel } from "../lib/index.js";
+import { useChannel, settings } from "../lib/index.js";
 
 import ThreeGeometry from "./ThreeGeometry.js";
 import ThreeGroup from "./ThreeGroup.js";
@@ -22,7 +22,7 @@ export default {
       }
     );
 
-    return { users, isLight };
+    return { settings, users, isLight };
   },
   template: `
     <three-group
@@ -32,7 +32,7 @@ export default {
     >
       <three-geometry
         :color="user.userColor"
-        lineColor="white"
+        :lineColor="settings.lineColor"
         :width="0.4"
         :depth="0.4"
         :height="2"

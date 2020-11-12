@@ -36,6 +36,7 @@ const App = {
   template: `
   <three-scene>
     <three-lights :color="settings.lightColor" />
+    <three-background :color="settings.materialColor" />
     <three-geometry
       :rotation="[-90,0,0]"
       geometry="PlaneGeometry"
@@ -67,6 +68,7 @@ const App = {
         anchorY="middle"
         fontSize="1.25"
         letterSpacing="-0.01"
+        :color="settings.lineColor"
       />
     </three-group>
     <three-users />

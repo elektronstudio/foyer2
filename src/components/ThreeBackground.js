@@ -22,19 +22,25 @@ export default {
     },
   },
   setup(props) {
-    const sceneContext = inject("sceneContext");
+    watch(
+      () => props.color,
+      (color) => document.body.style.setProperty("background", color),
+      { immediate: true }
+    );
 
-    const geometry = new SphereGeometry(100, 8, 8);
+    // const sceneContext = inject("sceneContext");
 
-    const material = new MeshBasicMaterial({
-      color: props.color,
-      side: DoubleSide,
-    });
+    // const geometry = new SphereGeometry(100, 8, 8);
 
-    const object = new Mesh(geometry, material);
+    // const material = new MeshBasicMaterial({
+    //   color: props.color,
+    //   side: DoubleSide,
+    // });
 
-    sceneContext.scene.add(object);
-    watchColor(props, object);
+    // const object = new Mesh(geometry, material);
+
+    // sceneContext.scene.add(object);
+    // watchColor(props, object);
 
     return () => null;
   },
