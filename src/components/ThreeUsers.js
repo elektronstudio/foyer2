@@ -37,7 +37,7 @@ export default {
         :depth="0.4"
         :height="2"
       />
-      <three-text
+      <!--three-text
         :text="user.userName"
         anchorX="left"
         anchorY="middle"
@@ -45,7 +45,7 @@ export default {
         :color="isLight(user.userColor || 'black') ? '#444' : '#ddd'"
         :position="[0,-0.8,0.22]"
         :rotation="[0,0,90]"
-      />
+      /-->
     </three-group>
     <div
       style="
