@@ -1,4 +1,4 @@
-import { createApp, ref, watch, computed, inject } from "./src/deps/vue.js";
+import { createApp } from "./src/deps/vue.js";
 import ThreeScene from "./src/components/ThreeScene.js";
 import ThreeGroup from "./src/components/ThreeGroup.js";
 import ThreeGeometry from "./src/components/ThreeGeometry.js";
@@ -26,7 +26,6 @@ const App = {
     ThreePanels,
     ThreeScene,
     ThreeText,
-    ThreeUsers,
     ThreeUsers,
     ThreeVideoHsl,
   },
